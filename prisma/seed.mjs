@@ -44,68 +44,70 @@ async function main() {
   // Seed Day 1 Questions
 
   // Beginner Question
-  // await prisma.question.create({
-  //   data: {
-  //     question: "What color do you get when you mix blue and yellow?",
-  //     answers: {
-  //       create: [
-  //         { answer: "Red" },
-  //         { answer: "Green" },
-  //         { answer: "Purple" },
-  //       ],
-  //     },
-  //     correctAnswer: "Green",
-  //     codeImage: null,
-  //     difficulty: "beginner",
-  //     day: 1,
-  //   },
-  // });
+  await prisma.questions.create({
+    data: {
+      question: "What color do you get when you mix blue and yellow?",
+      Answers: {
+        create: [
+          { answer: "Red" },
+          { answer: "Green" },
+          { answer: "Purple" },
+        ],
+      },
+      correctAnswer: "Green",
+      codeImage: null,
+      difficulty: "beginner",
+      day: 1,
+    },
+  });
 
-  // // Intermediate Question
-  // await prisma.question.create({
-  //   data: {
-  //     question: "In JavaScript, what is the result of 10 + '5' ?",
-  //     answers: {
-  //       create: [
-  //         { answer: "15" },
-  //         { answer: "105" }, 
-  //         { answer: "NaN" }, 
-  //       ],
-  //     },
-  //     correctAnswer: "105", 
-  //     codeImage: null,
-  //     difficulty: "intermediate",
-  //     day: 1,
-  //   },
-  // });
+  // Intermediate Question
+  await prisma.questions.create({
+    data:
+     {
+      question: "In JavaScript, what is the result of 10 + '5' ?",
+      Answers: {
+        create: [
+          { answer: "15" },
+          { answer: "105" }, 
+          { answer: "NaN" }, 
+        ],
+      },
+      correctAnswer: "105", 
+      codeImage: null,
+      difficulty: "intermediate",
+      day: 1,
+    },
+  });
 
-  // // Advanced Question
-  // await prisma.question.create({
-  //   data: {
-  //     question: "Which design pattern is best suited for implementing an undo/redo feature?",
-  //     answers: {
-  //       create: [
-  //         { answer: "Singleton" },
-  //         { answer: "Observer" },
-  //         { answer: "Command" },
-  //       ],
-  //     },
-  //     correctAnswer: "Command",
-  //     codeImage: null,
-  //     difficulty: "advanced",
-  //     day: 1,
-  //   },
-  // });
+  // Advanced Question
+  await prisma.questions.create({
+    data: {
+      question: "Which design pattern is best suited for implementing an undo/redo feature?",
+      Answers: {
+        create: [
+          { answer: "Singleton" },
+          { answer: "Observer" },
+          { answer: "Command" },
+        ],
+      },
+      correctAnswer: "Command",
+      codeImage: null,
+      difficulty: "advanced",
+      day: 1,
+    },
+  });
   
 
-  // console.log("Day 1 questions seeded successfully!");
+  console.log("Day 1 questions seeded successfully!");
 }
 
 main()
-  .catch((e) => {
-    console.error(e);
-    process.exit(1);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+.then(async () => {
+  await prisma.$disconnect()
+})
+.catch(async (e) => {
+  console.error(e)
+  await prisma.$disconnect()
+  process.exit(1)
+})

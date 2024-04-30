@@ -1,9 +1,9 @@
-import { UserButton } from "@clerk/nextjs"
+import GetUser from "@/app/components/GetUser"
 
 const Dashboard = () => {
   return (
     <div>Dashboard
-      <UserButton />
+      <GetUser/>
     </div>
   )
 }
