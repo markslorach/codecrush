@@ -1,44 +1,51 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
-  id                   Int    @id @default(autoincrement())
+  id                   Int      @id @default(autoincrement())
   name                 String
-  username             String @unique
-  uid                  String @unique
-  score                Int    @default(0)
-  streak               Int    @default(0)
-  answeredBeginner     Int    @default(0)
-  answeredIntermediate Int    @default(0)
-  answeredAdvanced     Int    @default(0)
+  username             String   @unique
+  uid                  String   @unique
+  score                Int      @default(0)
+  streak               Int      @default(0)
+  answeredBeginner     Int      @default(0)
+  answeredIntermediate Int      @default(0)
+  answeredAdvanced     Int      @default(0)
+  xata_updatedat       DateTime @default(now()) @db.Timestamptz(6)
+  xata_id              String   @unique(map: "User__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+  xata_version         Int      @default(0)
+  xata_createdat       DateTime @default(now()) @db.Timestamptz(6)
 }
 
-model Question {
-  id            Int      @id @default(autoincrement())
-  question      String
-  answers       Answer[]
-  codeImage     String?
-  correctAnswer String
-  difficulty    String // beginner, intermediate, advanced
-  day           Int // 1 to 7
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model Answers {
+  id             Int       @id(map: "Answer_pkey") @default(autoincrement())
+  answer         String
+  Questions      Questions @relation(fields: [questionId], references: [id], map: "Answer_questionId_fkey")
+  questionId     Int
+  xata_id        String    @unique(map: "Answer__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+  xata_version   Int       @default(0)
+  xata_createdat DateTime  @default(now()) @db.Timestamptz(6)
+  xata_updatedat DateTime  @default(now()) @db.Timestamptz(6)
 }
 
-model Answer {
-  id         Int      @id @default(autoincrement())
-  answer     String
-  question   Question @relation(fields: [questionId], references: [id])
-  questionId Int
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model Questions {
+  id             Int       @id(map: "Question_pkey") @default(autoincrement())
+  question       String
+  Answers        Answers[]
+  correctAnswer  String
+  codeImage      String?
+  difficulty     String
+  day            Int
+  xata_createdat DateTime  @default(now()) @db.Timestamptz(6)
+  xata_updatedat DateTime  @default(now()) @db.Timestamptz(6)
+  xata_id        String    @unique(map: "Question__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+  xata_version   Int       @default(0)
 }
