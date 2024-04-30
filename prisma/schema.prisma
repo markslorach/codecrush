@@ -14,8 +14,14 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-model Test {
-  id    Int     @id @default(autoincrement())
-  name  String?
-  email String?
+model User {
+  id                   Int    @id @default(autoincrement())
+  name                 String
+  username             String @unique
+  uid                  String @unique
+  score                Int    @default(0)
+  streak               Int    @default(0)
+  answeredBeginner     Int    @default(0)
+  answeredIntermediate Int    @default(0)
+  answeredAdvanced     Int    @default(0)
 }
