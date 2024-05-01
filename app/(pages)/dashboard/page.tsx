@@ -1,11 +1,11 @@
-import GetUser from "@/app/components/GetUser"
+import GetUser from "@/app/components/UserGreeting";
 
 const Dashboard = () => {
   return (
-    <div>Dashboard
-      <GetUser/>
+    <div>
+      <GetUser />
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

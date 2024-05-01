@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* body {
+  @apply bg-slate-900
+} */
+
+.cl-avatarBox {
+    @apply h-12 w-12
+}
