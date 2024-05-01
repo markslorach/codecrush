@@ -1,5 +1,5 @@
-import prisma from "@/prisma/client";
 import { currentUser } from "@clerk/nextjs/server";
+import prisma from "@/prisma/client";
 import Link from "next/link";
 import StatCard from "./StatCard";
 
@@ -31,21 +31,21 @@ const StatsList = async () => {
 
   return (
     <>
-      <div className="flex justify-around w-full">
+      <div className="flex justify-around w-full space-x-5">
         <StatCard
           title={"Score"}
           value={dbUser?.score ?? 0}
-          icon={<FaStar />}
+          icon={<FaStar className="w-6 h-6" />}
         />
         <StatCard
           title={"Streak"}
           value={dbUser?.streak ?? 0}
-          icon={<BsFillLightningChargeFill />}
+          icon={<BsFillLightningChargeFill className="w-6 h-6" />}
         />
         <StatCard
           title={"Rank"}
           value={currentUserRank ?? 0}
-          icon={<FaTrophy />}
+          icon={<FaTrophy className="w-6 h-6" />}
         />
       </div>
       <Link href="/profile">Profile</Link>

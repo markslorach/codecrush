@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-slate-900 text-white/90
+  @apply bg-white text-black/80
 }
 
 .cl-avatarBox {
