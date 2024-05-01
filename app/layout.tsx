@@ -24,7 +24,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={ubuntu.className}>
-          <main>{children}</main>
+          <main className="px-4 sm:px-0">{children}</main>
         </body>
       </html>
     </ClerkProvider>

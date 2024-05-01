@@ -15,6 +15,7 @@ const UserGreeting = async () => {
   const findUser = await prisma.user.findUnique({
     where: { username: user?.username },
   });
+  
 
   // If user is not found in the database, create a new user
   if (!findUser) {
