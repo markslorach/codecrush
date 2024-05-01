@@ -3,7 +3,7 @@ import { Inter, Ubuntu } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 
 const ubuntu = Ubuntu({
   weight: ["300", "400", "500", "700"],
