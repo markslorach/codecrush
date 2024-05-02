@@ -1,6 +1,5 @@
 import { currentUser } from "@clerk/nextjs/server";
 import prisma from "@/prisma/client";
-import Link from "next/link";
 import StatCard from "./StatCard";
 
 // Icons
@@ -30,8 +29,7 @@ const StatsList = async () => {
     allDbUsers.findIndex((user) => user.username === dbUser?.username) + 1;
 
   return (
-    <>
-      <div className="flex justify-around w-full space-x-5">
+      <div className="flex w-1/2 space-x-5">
         <StatCard
           title={"Score"}
           value={dbUser?.score ?? 0}
@@ -48,8 +46,6 @@ const StatsList = async () => {
           icon={<FaTrophy className="w-6 h-6" />}
         />
       </div>
-      <Link href="/profile">Profile</Link>
-    </>
   );
 };
 

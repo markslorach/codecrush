@@ -9,7 +9,6 @@ datasource db {
 
 model User {
   id                   Int      @id @default(autoincrement())
-  name                 String
   username             String   @unique
   uid                  String   @unique
   score                Int      @default(0)
@@ -27,25 +26,25 @@ model User {
 model Answers {
   id             Int       @id(map: "Answer_pkey") @default(autoincrement())
   answer         String
-  Questions      Questions @relation(fields: [questionId], references: [id], map: "Answer_questionId_fkey")
   questionId     Int
   xata_id        String    @unique(map: "Answer__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
   xata_version   Int       @default(0)
   xata_createdat DateTime  @default(now()) @db.Timestamptz(6)
   xata_updatedat DateTime  @default(now()) @db.Timestamptz(6)
+  Questions      Questions @relation(fields: [questionId], references: [id], map: "Answer_questionId_fkey")
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model Questions {
   id             Int       @id(map: "Question_pkey") @default(autoincrement())
   question       String
-  Answers        Answers[]
-  correctAnswer  String
   codeImage      String?
+  correctAnswer  String
   difficulty     String
   day            Int
   xata_createdat DateTime  @default(now()) @db.Timestamptz(6)
   xata_updatedat DateTime  @default(now()) @db.Timestamptz(6)
   xata_id        String    @unique(map: "Question__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
   xata_version   Int       @default(0)
+  Answers        Answers[]
 }

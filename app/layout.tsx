@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Ubuntu } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import NavBar from "./components/NavBar";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -20,11 +21,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <ClerkProvider>
       <html lang="en">
         <body className={ubuntu.className}>
-          <main className="px-4 sm:px-0">{children}</main>
+          <NavBar/>
+          <main>{children}</main>
         </body>
       </html>
     </ClerkProvider>

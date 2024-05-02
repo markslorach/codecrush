@@ -3,9 +3,27 @@
 @tailwind utilities;
 
 body {
-  @apply bg-white text-black/80
+  @apply bg-[#0f172a] text-white/90
 }
 
 .cl-avatarBox {
-    @apply h-12 w-12
+    @apply h-9 w-9
+}
+
+.cl-internal-180wb59 {
+  @apply hidden
+}
+
+@layer utilities {
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+  .animation-delay-6000 {
+    animation-delay: 6s;
+  }
 }
