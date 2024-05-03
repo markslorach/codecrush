@@ -11,7 +11,7 @@ import { FaCode } from "react-icons/fa";
 
 const NavBar = () => {
   return (
-    <nav className="w-full py-6 items-center justify-between flex px-5 md:px-20">
+    <nav className="w-full h-24 items-center justify-between flex px-5 md:px-20">
       <h1>
         <Link href="/" className="font-bold text-2xl flex items-center">
           {" "}

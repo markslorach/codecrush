@@ -18,10 +18,6 @@ body {
   @apply bg-[#0f172a];
 }
 
-/* .cl-card {
-  @apply bg-white/10
-} */
-
 @layer utilities {
   .animation-delay-2000 {
     animation-delay: 2s;

@@ -1,4 +1,4 @@
-import LeaderboardTable from "@/app/components/LeaderboardTable";
+import LeaderboardTable from "@/app/(main)/components/LeaderboardTable";
 
 // export const dynamic = "force dynamic";
 

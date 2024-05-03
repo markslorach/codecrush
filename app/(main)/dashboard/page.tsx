@@ -2,19 +2,18 @@ import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 // Components
-import ChallengeList from "@/app/components/ChallengeList";
-import StatsList from "@/app/components/StatsList";
-import SubHeading from "@/app/components/SubHeading";
-import UserGreeting from "@/app/components/UserGreeting";
+import ChallengeList from "@/app/(main)/components/ChallengeList";
+import StatsList from "@/app/(main)/components/StatsList";
+import SubHeading from "@/app/(main)/components/SubHeading";
+import UserGreeting from "@/app/(main)/components/UserGreeting";
 
 // export const dynamic = "force-dynamic";
 
 const Dashboard = () => {
-
   const { userId } = auth();
 
   if (!userId) {
-    redirect('/')
+    redirect("/");
   }
 
   return (
