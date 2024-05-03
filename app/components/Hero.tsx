@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 
 const Hero = () => {
   return (
-    <section className="h-[550px] w-full flex justify-center items-center space-y-6 text-center px-5">
+    <section className="h-[580px] w-full flex justify-center items-center space-y-6 text-center px-5">
       <div className="relative max-w-xl">
         <div className="space-y-6">
           <h1 className="text-5xl sm:text-6xl font-bold">Level Up Your Coding Skills</h1>

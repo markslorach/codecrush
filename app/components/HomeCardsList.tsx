@@ -1,6 +1,6 @@
 import HomeCard from "./HomeCard";
 
-import { Gem, Trophy, Flame } from "lucide-react";
+import { Brain, Trophy, Flame } from "lucide-react";
 
 interface CardInfo {
   icon: any;
@@ -10,7 +10,7 @@ interface CardInfo {
 
 const cardInfo: CardInfo[] = [
   {
-    icon: <Gem className="text-blue-400" />,
+    icon: <Brain className="text-blue-400" />,
     title: "Boost Your Brain",
     description: "Kickstart your mind with quick, daily coding challenges.",
   },
@@ -28,12 +28,12 @@ const cardInfo: CardInfo[] = [
 
 const HomeCardsList = () => {
   return (
-    <section className="px-5 md:px-20 py-24">
+    <section className="px-5 md:px-20 py-20">
       <div className="max-w-5xl mx-auto space-y-12">
         <h2 className="text-4xl font-bold text-center">
           Challenge yourself, climb the ranks.
         </h2>
-        <div className="flex w-full gap-4 flex-wrap sm:flex-nowrap  mx-auto">
+        <div className="flex w-full gap-4 flex-wrap sm:flex-nowrap mx-auto">
           {cardInfo.map((info, idx) => (
             <HomeCard
               key={idx}
