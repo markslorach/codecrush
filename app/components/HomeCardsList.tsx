@@ -1,5 +1,4 @@
 import HomeCard from "./HomeCard";
-
 import { Brain, Trophy, Flame } from "lucide-react";
 
 interface CardInfo {
@@ -28,7 +27,7 @@ const cardInfo: CardInfo[] = [
 
 const HomeCardsList = () => {
   return (
-    <section className="px-5 md:px-20 py-20">
+    <section className="px-5 md:px-20 py-16">
       <div className="max-w-5xl mx-auto space-y-12">
         <h2 className="text-4xl font-bold text-center">
           Challenge yourself, climb the ranks.
