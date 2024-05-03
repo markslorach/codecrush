@@ -1,13 +1,13 @@
-import HomeCard from "./HomeCard";
+import FeaturesCard from "./FeaturesCard";
 import { Brain, Trophy, Flame } from "lucide-react";
 
-interface CardInfo {
+interface Props {
   icon: any;
   title: string;
   description: string;
 }
 
-const cardInfo: CardInfo[] = [
+const cardInfo: Props[] = [
   {
     icon: <Brain className="text-blue-400" />,
     title: "Boost Your Brain",
@@ -25,16 +25,16 @@ const cardInfo: CardInfo[] = [
   },
 ];
 
-const HomeCardsList = () => {
+const FeaturesCardList = () => {
   return (
-    <section className="px-5 md:px-20 py-16">
+    <section className="px-5 md:px-20 py-4 sm:py-6">
       <div className="max-w-5xl mx-auto space-y-12">
         <h2 className="text-4xl font-bold text-center">
           Challenge yourself, climb the ranks.
         </h2>
         <div className="flex w-full gap-4 flex-wrap sm:flex-nowrap mx-auto">
           {cardInfo.map((info, idx) => (
-            <HomeCard
+            <FeaturesCard
               key={idx}
               title={info.title}
               description={info.description}
@@ -47,4 +47,4 @@ const HomeCardsList = () => {
   );
 };
 
-export default HomeCardsList;
+export default FeaturesCardList;

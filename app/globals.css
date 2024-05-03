@@ -3,23 +3,26 @@
 @tailwind utilities;
 
 body {
-  @apply bg-[#0f172a] text-white/90
+  @apply bg-[#0f172a] text-white/90;
 }
 
 .cl-avatarBox {
-    @apply h-9 w-9
+  @apply h-9 w-9;
 }
 
 .cl-internal-180wb59 {
-  @apply hidden
+  @apply hidden;
 }
 
 .cl-formButtonPrimary {
-  @apply bg-[#0f172a]
+  @apply bg-[#0f172a];
 }
 
-@layer utilities {
+/* .cl-card {
+  @apply bg-white/10
+} */
 
+@layer utilities {
   .animation-delay-2000 {
     animation-delay: 2s;
   }

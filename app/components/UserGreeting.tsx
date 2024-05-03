@@ -1,5 +1,6 @@
 import { currentUser } from "@clerk/nextjs/server";
 import prisma from "@/prisma/client";
+import { UserButton } from "@clerk/nextjs";
 
 interface ClerkUser {
   id: string;
@@ -33,6 +34,7 @@ const UserGreeting = async () => {
         <span>Hello,</span>{" "}
         {user?.username.charAt(0).toUpperCase() + user?.username.slice(1)}!
       </h1>
+      <UserButton/>
     </header>
   );
 };

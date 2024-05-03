@@ -20,14 +20,14 @@ const NavBar = () => {
       </h1>
 
       <SignedOut>
-        <div className="space-x-3 hidden sm:inline">
+        <div className="space-x-3">
           <SignInButton>
             <Button className="rounded-full border-2 border-white/90">
               Sign In
             </Button>
           </SignInButton>
           <SignUpButton>
-            <Button className="bg-white/90 text-[#0f172a] rounded-full">
+            <Button className="bg-white/90 text-[#0f172a] rounded-full hidden sm:inline">
               Sign Up
             </Button>
           </SignUpButton>
