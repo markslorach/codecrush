@@ -17,7 +17,7 @@ const NavBar = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="w-full py-6 items-center justify-between flex px-5 md:px-20 border-b border-white/10">
+    <nav className="w-full py-6 items-center justify-between flex px-5 md:px-20">
       <h1>
         <Link href="/" className="font-bold text-2xl flex items-center">
           {" "}
@@ -26,7 +26,7 @@ const NavBar = () => {
       </h1>
 
       <SignedOut>
-        <div className="space-x-3">
+        <div className="space-x-3 hidden sm:inline">
           <SignInButton>
             <Button className="rounded-full border-2 border-white/90">Sign In</Button>
           </SignInButton>
