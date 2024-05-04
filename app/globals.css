@@ -7,10 +7,14 @@ body {
 }
 
 .cl-avatarBox {
-  @apply h-9 w-9;
+  @apply h-10 w-10;
 }
 
 .cl-internal-180wb59 {
+  @apply hidden;
+}
+
+.cl-internal-11ttlho {
   @apply hidden;
 }
 
