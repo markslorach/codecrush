@@ -1,15 +1,23 @@
 interface StatCardProps {
   title: string;
-  value: number;
+  value: string | number;
   icon: any;
+  detail: string;
 }
 
-const StatCard = ({ title, value, icon }: StatCardProps) => {
+const StatCard = ({ title, value, icon, detail }: StatCardProps) => {
   return (
-    <div className="flex flex-col space-y-3 border-2 border-gray-700 w-1/3 items-center rounded-2xl shadow-sm p-3">
-      <p className="text-purple-400 w-fit py-1 ">{icon}</p>
-      <p className="font-bold text-xl">{value}</p>
-      <p className="text-xl font-bold">{title}</p>
+    <div className="w-1/3 flex flex-col p-[1px] rounded-lg bg-gradient-to-br from-red-400 via-purple-400 to-blue-400">
+      <div className="bg-[#1b2335] space-y-8 rounded-lg p-6">
+        <div className="flex justify-between w-full items-center">
+          <p className="text-lg">{title}</p>
+          <p className="w-fit">{icon}</p>
+        </div>
+        <div>
+          <p className="text-5xl font-medium">{value}</p>
+          <small className="text-gray-400 tracking-wide hidden lg:inline">{detail}</small>
+        </div>
+      </div>
     </div>
   );
 };
