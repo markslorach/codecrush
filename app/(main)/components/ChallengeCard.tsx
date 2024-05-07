@@ -11,8 +11,8 @@ interface Props {
 const ChallengeCard = ({ icon, title, description }: Props) => {
   return (
     <div className="p-[1px] bg-gradient-to-br from-purple-400 via-red-400 to-blue-400 rounded-lg">
-      <Card className="w-full bg-900 bg-slate-900 transition-colors duration-300 ease-in-out text-white/90 p-3.5 space-y-6 group">
-        <p>{icon}</p>
+      <Card className="w-full bg-900 bg-slate-900 transition-colors duration-300 ease-in-out text-white/90 p-6 space-y-6 group">
+        <span>{icon}</span>
         <div className="space-y-1">
           <CardTitle className="text-xl">{title}</CardTitle>
           <CardDescription className="text-gray-400 font-light tracking-wide">

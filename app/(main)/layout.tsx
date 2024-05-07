@@ -1,17 +1,9 @@
 import React, { ReactNode } from "react";
-import { redirect } from "next/navigation";
-import { auth } from "@clerk/nextjs/server";
 
 // Components
 import SideNav from "./components/SideNav";
 
 const MainLayout = ({ children }: { children: ReactNode }) => {
-  const { userId } = auth();
-
-  if (!userId) {
-    redirect("/");
-  }
-
   
   return (
     <main className="grid grid-cols-1 md:grid-cols-[80px_1fr]">

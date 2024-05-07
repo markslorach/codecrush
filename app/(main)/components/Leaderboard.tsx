@@ -10,13 +10,18 @@ import prisma from "@/prisma/client";
 
 const Leaderboard = async () => {
   const users = await prisma.user.findMany({
+    where: {
+      score: {
+        gt: 0,
+      },
+    },
     orderBy: {
       score: "desc",
     },
   });
 
   return (
-    <section className="border border-white/20 rounded-lg">
+    <section className="border border-white/40 rounded-lg">
       <Table>
         <TableHeader className="h-20">
           <TableRow className="border-b-white/20 text-base">
