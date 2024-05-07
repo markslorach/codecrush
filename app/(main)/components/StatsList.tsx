@@ -61,23 +61,23 @@ const StatsList = async () => {
     dbUser?.streak === 0 ? "Time to start a streak!" : "Keep it up!";
 
   return (
-    <div className="flex w-full space-x-5">
+    <div className="flex w-full gap-5 flex-wrap lg:flex-nowrap">
       <StatCard
         title={"Current Score"}
         value={dbUser?.score ?? 0}
-        icon={<Star className="w-6 h-6" />}
+        icon={<Star className="w-6 h-6 text-blue-400" />}
         detail={scoreDetail}
       />
       <StatCard
         title={"Current Streak"}
         value={dbUser?.streak ?? 0}
-        icon={<Flame className="w-6 h-6" />}
+        icon={<Flame className="w-6 h-6 text-red-400" />}
         detail={streakDetail}
       />
       <StatCard
         title={"Current Rank"}
         value={`#${currentUserRank ?? 0}`}
-        icon={<Trophy className="w-6 h-6" />}
+        icon={<Trophy className="w-6 h-6 text-zinc-200" />}
         detail={rankDetail}
       />
     </div>
