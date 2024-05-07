@@ -46,7 +46,7 @@ const StatsList = async () => {
 
   let rankDetail;
   if (currentUserRank === 1) {
-    rankDetail = "You are in 1st place!";
+    rankDetail = "You are top of the leaderboard!";
   } else if (currentUserRank === 2) {
     rankDetail = "You are in 2nd place!";
   } else if (currentUserRank === 3) {

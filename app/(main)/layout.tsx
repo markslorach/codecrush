@@ -4,7 +4,6 @@ import { auth } from "@clerk/nextjs/server";
 
 // Components
 import SideNav from "./components/SideNav";
-import MobileNav from "./components/MobileNav";
 
 const MainLayout = ({ children }: { children: ReactNode }) => {
   const { userId } = auth();
@@ -22,7 +21,6 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
       <div className="px-5 py-8 md:p-14 md:overflow-y-auto h-screen flex-col 2xl:px-48">
         {children}
       </div>
-      <MobileNav />
     </main>
   );
 };

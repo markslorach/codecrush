@@ -20,9 +20,9 @@ const Leaderboard = async () => {
       <Table>
         <TableHeader className="h-20">
           <TableRow className="border-b-white/20 text-base">
-            <TableHead className="text-white">Rank</TableHead>
-            <TableHead className="text-white">Username</TableHead>
-            <TableHead className="text-right text-white">Score</TableHead>
+            <TableHead>Rank</TableHead>
+            <TableHead>Username</TableHead>
+            <TableHead className="text-right">Score</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

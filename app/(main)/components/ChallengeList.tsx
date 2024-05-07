@@ -8,7 +8,7 @@ interface Props {
 }
 
 const jsCard: Props = {
-  icon: <SiJavascript className="h-12 w-12 rounded-sm text-blue-400" />,
+  icon: <SiJavascript className="h-12 w-12 rounded-sm text-blue-300" />,
   title: "JavaScript",
   description: "Challenge yourself with today's JavaScript questions!",
 };

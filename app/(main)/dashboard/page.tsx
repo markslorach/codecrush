@@ -1,6 +1,3 @@
-import { auth } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
-
 // Components
 import ChallengeList from "@/app/(main)/components/ChallengeList";
 import StatsList from "@/app/(main)/components/StatsList";
@@ -11,19 +8,10 @@ import Leaderboard from "../components/Leaderboard";
 export const dynamic = "force-dynamic";
 
 const Dashboard = () => {
-  const { userId } = auth();
-
-  const redirectAfterSignout = () => {
-    if (!userId) {
-      redirect("/");
-    }
-  };
-
-  redirectAfterSignout();
 
   return (
     <main>
-      <header className="mb-20">
+      <header className="mb-28">
         <UserGreeting />
       </header>
       <section className="mb-20">
