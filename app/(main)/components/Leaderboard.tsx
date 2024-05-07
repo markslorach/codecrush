@@ -16,10 +16,10 @@ const Leaderboard = async () => {
   });
 
   return (
-    <section className="border border-white/40 rounded-lg bg-white/5">
+    <section className="border border-white/20 rounded-lg">
       <Table>
         <TableHeader className="h-20">
-          <TableRow className="border-b-white/40">
+          <TableRow className="border-b-white/20 text-base">
             <TableHead className="text-white">Rank</TableHead>
             <TableHead className="text-white">Username</TableHead>
             <TableHead className="text-right text-white">Score</TableHead>
@@ -27,7 +27,10 @@ const Leaderboard = async () => {
         </TableHeader>
         <TableBody>
           {users?.slice(0, 10).map((user, idx) => (
-            <TableRow className="border-white/20" key={user.id}>
+            <TableRow
+              className={`${idx % 2 === 0 ? "bg-white/5" : ""} border-white/20`}
+              key={user.id}
+            >
               <TableCell>#{idx + 1}</TableCell>
               <TableCell>{user.username}</TableCell>
               <TableCell className="text-right">{user.score}</TableCell>

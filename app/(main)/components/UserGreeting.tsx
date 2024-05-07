@@ -15,9 +15,6 @@ const UserGreeting = async () => {
     where: { username: user?.username },
   });
 
-  console.log(findUser)
-  
-
   // If user is not found in the database, create a new user
   if (!findUser) {
     await prisma.user.create({
@@ -30,11 +27,11 @@ const UserGreeting = async () => {
 
   return (
     <header className="flex items-center justify-between">
-      <h1 className="text-4xl font-extrabold">
+      <h1 className="text-4xl md:text-5xl font-extrabold">
         <span>Hello,</span>{" "}
         {user?.username.charAt(0).toUpperCase() + user?.username.slice(1)}!
       </h1>
-      <UserButton/>
+      <UserButton />
     </header>
   );
 };

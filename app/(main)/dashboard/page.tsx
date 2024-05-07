@@ -30,12 +30,12 @@ const Dashboard = () => {
         <SubHeading className="mb-5">Your Stats</SubHeading>
         <StatsList />
       </section>
-      <section className="mb-10 flex gap-20">
-        <div className="w-1/3">
+      <section className="mb-10 flex gap-14">
+        <div className="w-full lg:w-1/3">
           <SubHeading className="mb-5">Today&apos;s Challenge</SubHeading>
           <ChallengeList />
         </div>
-        <div className="w-2/3">
+        <div className="hidden lg:inline md:w-2/3">
           <SubHeading className="mb-5">Leaderboard</SubHeading>
           <Leaderboard />
         </div>

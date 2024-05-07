@@ -1,12 +1,17 @@
 import ChallengeCard from "./ChallengeCard";
+import { SiJavascript } from "react-icons/si";
 
 interface Props {
-  icon: string;
+  icon: any;
   title: string;
   description: string;
 }
 
-const jsCard: Props = {icon: "temp", title: "JavaScript", description: "This is a description"};
+const jsCard: Props = {
+  icon: <SiJavascript className="h-12 w-12 rounded-sm text-blue-400" />,
+  title: "JavaScript",
+  description: "Challenge yourself with today's JavaScript questions!",
+};
 
 const ChallengeList = () => {
   return (

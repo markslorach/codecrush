@@ -1,14 +1,13 @@
-import LeaderboardTable from "@/app/(main)/components/LeaderboardTable";
+import Leaderboard from "../components/Leaderboard";
 
 // export const dynamic = "force dynamic";
 
-const Leaderboard = () => {
+const LeaderboardPage = () => {
   return (
     <div>
-      Leaderboard
-      <LeaderboardTable />
+   <Leaderboard/>
     </div>
   );
 };
 
-export default Leaderboard;
+export default LeaderboardPage;

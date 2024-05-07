@@ -1,5 +1,6 @@
-import { Card, CardDescription, CardTitle } from '@/components/ui/card';
-
+import { Card, CardDescription, CardTitle } from "@/components/ui/card";
+import { MoveRight } from "lucide-react";
+import Link from "next/link";
 
 interface Props {
   icon: string;
@@ -7,20 +8,24 @@ interface Props {
   description: string;
 }
 
-const ChallengeCard = ({icon, title, description}: Props) => {
+const ChallengeCard = ({ icon, title, description }: Props) => {
   return (
-    <Card className="w-full bg-white/5 border border-white/40 hover:border-white/70 transition-colors duration-300 ease-in-out text-white/90 p-3.5 space-y-4 group">
-    <div className="p-2.5 rounded-full border border-white/20 w-fit">
-      <p>{icon}</p>
+    <div className="p-[1px] bg-gradient-to-br from-purple-400 via-red-400 to-blue-400 rounded-lg">
+      <Card className="w-full bg-900 bg-slate-900 transition-colors duration-300 ease-in-out text-white/90 p-3.5 space-y-6 group">
+        <p>{icon}</p>
+        <div className="space-y-1">
+          <CardTitle className="text-xl">{title}</CardTitle>
+          <CardDescription className="text-gray-400 font-light tracking-wide">
+            {description}
+          </CardDescription>
+        </div>
+        <div className="flex items-center space-x-2 text-blue-300 hover:text-blue-200 transition-colors ease-in-out duration-300 w-fit">
+          <Link href="/dashboard">Choose difficulty</Link>
+          <MoveRight className="group-hover:translate-x-0.5 transition-transform duration-300 ease-in-out" />
+        </div>
+      </Card>
     </div>
-    <div className="space-y-1">
-      <CardTitle className="text-xl">{title}</CardTitle>
-      <CardDescription className="text-gray-400 font-light tracking-wide">
-        {description}
-      </CardDescription>
-    </div>
-  </Card>
-  )
-}
+  );
+};
 
-export default ChallengeCard
+export default ChallengeCard;
