@@ -1,25 +1,27 @@
 import prisma from "@/prisma/client";
 import Answers from "./Answers";
 
-const GamePage = async ({ params }: { params: { difficulty: string } }) => {
-const question = await prisma.questions.findFirst({
-    where: {
-        difficulty: params.difficulty,
-        day: 1,
-    },
-});
+export const revalidate = 0;
 
-if (!question) {
-    return <div>Page Not Found</div>; 
+const QuizPage = async ({ params }: { params: { difficulty: string } }) => {
+  const question = await prisma.questions.findFirst({
+    where: {
+      difficulty: params.difficulty,
+      day: 1,
+    },
+  });
+
+  if (!question) {
+    return <div>Page Not Found</div>;
   }
 
-const answers = await prisma.answers.findMany({
+  const answers = await prisma.answers.findMany({
     where: {
-        questionId: question?.id
+      questionId: question?.id,
     },
-});
+  });
 
-console.log(answers)
+  console.log(answers);
 
   return (
     <div>
@@ -37,4 +39,4 @@ console.log(answers)
   );
 };
 
-export default GamePage;
+export default QuizPage;

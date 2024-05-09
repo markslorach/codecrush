@@ -1,3 +1,5 @@
+import { cn } from "@/lib/utils";
+
 interface HeadingProps {
     children: React.ReactNode;
     className?: string;
@@ -5,7 +7,7 @@ interface HeadingProps {
   
   const SubHeading = ({ children, className }: HeadingProps) => {
     return (
-      <h2 className={`${className} text-3xl font-extrabold leading-none`}>
+      <h2 className={cn("text-3xl font-normal leading-none", className)}>
         {children}
       </h2>
     );

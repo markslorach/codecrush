@@ -32,7 +32,7 @@ const FeaturesCardList = () => {
         <h2 className="text-4xl font-bold text-center">
           Challenge yourself, climb the ranks.
         </h2>
-        <div className="flex w-full gap-4 flex-wrap sm:flex-nowrap mx-auto">
+        <div className="flex w-full gap-4 flex-wrap md:flex-nowrap mx-auto">
           {cardInfo.map((info, idx) => (
             <FeaturesCard
               key={idx}
