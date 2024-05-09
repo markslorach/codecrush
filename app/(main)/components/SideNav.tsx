@@ -34,7 +34,10 @@ const SideNav = () => {
           {navLinks.map((link, idx) => (
             <span
               key={idx}
-              onClick={() => router.push(link.path)}
+              onClick={() => {
+                router.push(link.path);
+                router.refresh();
+              }}
               className={cn({
                 "bg-white/15": pathname === link.path,
                 "bg-white/5": pathname !== link.path,

@@ -10,15 +10,12 @@ import prisma from "@/prisma/client";
 
 const Leaderboard = async () => {
   const users = await prisma.user.findMany({
-    where: {
-      score: {
-        gt: 0,
-      },
-    },
     orderBy: {
       score: "desc",
     },
   });
+
+  const filteredUsers = users.filter((user) => user.score > 0);
 
   return (
     <section className="border border-white/40 rounded-lg">
@@ -31,7 +28,7 @@ const Leaderboard = async () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {users?.slice(0, 10).map((user, idx) => (
+          {filteredUsers?.slice(0, 10).map((user, idx) => (
             <TableRow
               className={`${idx % 2 === 0 ? "bg-white/5" : ""} border-white/20`}
               key={user.id}
