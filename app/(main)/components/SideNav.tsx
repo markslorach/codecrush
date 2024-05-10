@@ -1,12 +1,12 @@
 "use client";
-import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
+import { UserButton } from "@clerk/nextjs";
 import { usePathname, useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 // Icons
 import { FaCode } from "react-icons/fa";
-import { Trophy, User, LayoutDashboard } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { Trophy, UserRound, LayoutDashboard } from "lucide-react";
 
 interface NavLink {
   label: string;
@@ -17,7 +17,7 @@ interface NavLink {
 const navLinks: NavLink[] = [
   { label: "Dashboard", path: "/dashboard", icon: LayoutDashboard },
   { label: "Leaderboard", path: "/leaderboard", icon: Trophy },
-  { label: "Profile", path: "/profile", icon: User },
+  { label: "Profile", path: "/profile", icon: UserRound },
 ];
 
 const SideNav = () => {
@@ -25,14 +25,14 @@ const SideNav = () => {
   const pathname = usePathname();
 
   return (
-    <nav className="flex flex-col h-full justify-between items-center">
+    <nav className="flex h-full flex-col items-center justify-between">
       <div className="space-y-20">
         <Link href="/dashboard" className="flex justify-center">
-          <FaCode className="w-8 h-8 text-white/90" />
+          <FaCode className="h-8 w-8 text-white/90" />
         </Link>
-        <div className="flex flex-col space-y-4 items-center">
+        <div className="flex flex-col items-center space-y-4 pb-20">
           {navLinks.map((link, idx) => (
-            <span
+            <button type="button"
               key={idx}
               onClick={() => {
                 router.push(link.path);
@@ -41,11 +41,13 @@ const SideNav = () => {
               className={cn({
                 "bg-white/15": pathname === link.path,
                 "bg-white/5": pathname !== link.path,
-                "cursor-pointer p-2.5 rounded-lg": true,
+                "cursor-pointer rounded-md p-2.5 transition-colors hover:bg-white/15":
+                  true,
               })}
             >
               <link.icon />
-            </span>
+              <span className="hidden">{link.label}</span>
+            </button>
           ))}
         </div>
       </div>

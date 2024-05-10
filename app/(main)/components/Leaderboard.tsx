@@ -18,7 +18,7 @@ const Leaderboard = async () => {
   const filteredUsers = users.filter((user) => user.score > 0);
 
   return (
-    <section className="border border-white/40 rounded-lg">
+    <section className="border border-white/40 rounded-md">
       <Table>
         <TableHeader className="h-20">
           <TableRow className="border-b-white/20 text-base">
@@ -28,7 +28,7 @@ const Leaderboard = async () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {filteredUsers?.slice(0, 10).map((user, idx) => (
+          {filteredUsers?.slice(0, 5).map((user, idx) => (
             <TableRow
               className={`${idx % 2 === 0 ? "bg-white/5" : ""} border-white/20`}
               key={user.id}
