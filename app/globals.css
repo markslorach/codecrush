@@ -10,6 +10,11 @@ body {
   @apply h-10 w-10;
 }
 
+.cl-card {
+  @apply bg-gray-50;
+
+}
+
 .cl-internal-180wb59 {
   @apply hidden;
 }

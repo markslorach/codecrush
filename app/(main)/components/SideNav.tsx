@@ -11,7 +11,7 @@ import { Trophy, UserRound, LayoutDashboard } from "lucide-react";
 interface NavLink {
   label: string;
   path: string;
-  icon: React.FC;
+  icon: any;
 }
 
 const navLinks: NavLink[] = [
@@ -27,13 +27,19 @@ const SideNav = () => {
   return (
     <nav className="flex h-full flex-col items-center justify-between">
       <div className="space-y-20">
-        <Link href="/dashboard" className="flex justify-center">
+        <Link
+          href="/dashboard"
+          aria-label="Dashboard"
+          className="flex justify-center"
+        >
           <FaCode className="h-8 w-8 text-white/90" />
         </Link>
         <div className="flex flex-col items-center space-y-4 pb-20">
           {navLinks.map((link, idx) => (
-            <button type="button"
+            <button
+              type="button"
               key={idx}
+              aria-label={link.label}
               onClick={() => {
                 router.push(link.path);
                 router.refresh();
