@@ -1,6 +1,6 @@
 # CodeCrush
 
-==Under development==
+### Under development
 
 Quiz application with daily coding challenges. Answer questions correctly to build a streak, earn points and rank up on the leaderboard.
 
