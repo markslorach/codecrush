@@ -32,13 +32,13 @@ const ChallengeCard = ({ icon, title, description }: ChallengeCardProps) => {
                 {description}
               </CardDescription>
             </div>
-            <div className="flex w-fit items-center space-x-2 text-blue-300 transition-colors duration-300 ease-in-out hover:text-blue-200">
+            <div className="flex w-fit items-center space-x-2 text-blue-300">
               <span>Choose difficulty</span>
               <MoveRight className="transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
             </div>
           </Card>
         </DialogTrigger>
-        <DialogContent className="h-52 w-[95%] border-2 border-slate-400 bg-slate-200 p-4 text-black/80 sm:w-1/2">
+        <DialogContent className="h-52 w-[95%] border-2 border-slate-400 bg-slate-50 p-4 text-black/80 sm:w-1/2">
           <DialogHeader>
             <SubHeading className="font-medium">
               Choose your difficulty
