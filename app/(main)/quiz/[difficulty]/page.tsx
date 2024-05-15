@@ -20,51 +20,19 @@ const QuizPage = async ({ params }: { params: { difficulty: string } }) => {
     },
   });
 
-  const updateUserIfCorrect = async () => {
+  const updateUser = async (correct: boolean) => {
     "use server";
     const clerkUser = await currentUser();
 
-    const updateData: { [key: string]: any } = {
-      score: { increment: 10 },
-      streak: { increment: 1 },
+    let updateData: { [key: string]: any } = {
+      [params.difficulty + "Answered"]: 1,
+      streak: correct ? { increment: 1 } : 0,
     };
 
-    if (params.difficulty === "beginner") {
-      updateData.beginnerAnswered = 1;
-    } else if (params.difficulty === "intermediate") {
-      updateData.intermediateAnswered = 1;
-    } else if (params.difficulty === "advanced") {
-      updateData.advancedAnswered = 1;
-    }
+    if (correct) updateData.score = { increment: 10 };
 
     await prisma.user.update({
-      where: {
-        username: clerkUser?.username as string,
-      },
-      data: updateData,
-    });
-  };
-
-  const updateUserIfIncorrect = async () => {
-    "use server";
-    const clerkUser = await currentUser();
-
-    const updateData: { [key: string]: any } = {
-      streak: 0,
-    };
-
-    if (params.difficulty === "beginner") {
-      updateData.beginnerAnswered = 1;
-    } else if (params.difficulty === "intermediate") {
-      updateData.intermediateAnswered = 1;
-    } else if (params.difficulty === "advanced") {
-      updateData.advancedAnswered = 1;
-    }
-
-    await prisma.user.update({
-      where: {
-        username: clerkUser?.username as string,
-      },
+      where: { username: clerkUser?.username as string },
       data: updateData,
     });
   };
@@ -79,8 +47,7 @@ const QuizPage = async ({ params }: { params: { difficulty: string } }) => {
       <QuizContainer
         answers={answers}
         question={question}
-        userCorrect={updateUserIfCorrect}
-        userIncorrect={updateUserIfIncorrect}
+        updateUser={updateUser}
       />
     </div>
   );

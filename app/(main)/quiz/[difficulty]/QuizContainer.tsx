@@ -17,23 +17,18 @@ interface AnswerProps {
 }
 
 const QuizContainer = ({
-  userCorrect,
-  userIncorrect,
+  updateUser,
   question,
   answers,
 }: {
-  userCorrect: () => void;
-  userIncorrect: () => void;
+  updateUser: (correct: boolean) => void;
   question: QuestionProps;
   answers: AnswerProps[];
 }) => {
-  const [selectedAnswer, setSelectedAnswer] = useState<AnswerProps | null>(
-    null,
-  );
+  const [selectedAnswer, setSelectedAnswer] = useState<AnswerProps | null>(null);
   const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(0); // Store the selected answer index
   const [submitted, setSubmitted] = useState(false); // Track if the user has submitted
 
-  console.log(selectedAnswer?.correct);
   return (
     <section className="space-y-3">
       <h2>{question?.question}</h2>
@@ -54,8 +49,16 @@ const QuizContainer = ({
           </div>
         ))}
       </div>
-      <form action={selectedAnswer?.correct ? userCorrect : userIncorrect}>
-        <Button variant="outline">Submit</Button>
+      <form
+        onSubmit={(e) => {
+          updateUser(selectedAnswer?.correct ?? false);
+          e.preventDefault();
+          setSubmitted(true);
+        }}
+      >
+        <Button disabled={submitted} variant="outline" type="submit">
+          Submit
+        </Button>
       </form>
     </section>
   );
