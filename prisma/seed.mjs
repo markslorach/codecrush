@@ -1,43 +1,7 @@
-import prisma from "@/prisma/client";
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 
 async function main() {
-
-  // Seed Users
-  const users = [
-    {
-      name: "Sarah Williams",
-      username: "sarahw",
-      uid: "unique-id-1",
-      score: 60,
-      streak: 15,
-    },
-    {
-      name: "John Miller",
-      username: "jmiller19",
-      uid: "unique-id-2",
-      score: 20,
-      streak: 3,
-    },
-    {
-      name: "Emily Davis",
-      username: "codingemily",
-      uid: "unique-id-3",
-      score: 40,
-      streak: 4,
-    },
-    {
-      name: "Michael Johnson",
-      username: "mjohn12",
-      uid: "unique-id-4",
-      score: 10,
-      streak: 1,
-    },
-  ];
-
-  await prisma.user.createMany({
-    data: users,
-    skipDuplicates: true,
-  });
 
   // Seed Day 1 Questions
 
@@ -47,9 +11,9 @@ async function main() {
       question: "What color do you get when you mix blue and yellow?",
       Answers: {
         create: [
-          { answer: "Red" },
-          { answer: "Green" },
-          { answer: "Purple" },
+          { answer: "Red", correct: false },
+          { answer: "Green", correct: true },
+          { answer: "Purple", correct: false },
         ],
       },
       correctAnswer: "Green",
@@ -61,17 +25,16 @@ async function main() {
 
   // Intermediate Question
   await prisma.questions.create({
-    data:
-     {
+    data: {
       question: "In JavaScript, what is the result of 10 + '5' ?",
       Answers: {
         create: [
-          { answer: "15" },
-          { answer: "105" }, 
-          { answer: "NaN" }, 
+          { answer: "15", correct: false },
+          { answer: "105", correct: true },
+          { answer: "NaN", correct: false },
         ],
       },
-      correctAnswer: "105", 
+      correctAnswer: "105",
       codeImage: null,
       difficulty: "intermediate",
       day: 1,
@@ -81,12 +44,13 @@ async function main() {
   // Advanced Question
   await prisma.questions.create({
     data: {
-      question: "Which design pattern is best suited for implementing an undo/redo feature?",
+      question:
+        "Which design pattern is best suited for implementing an undo/redo feature?",
       Answers: {
         create: [
-          { answer: "Singleton" },
-          { answer: "Observer" },
-          { answer: "Command" },
+          { answer: "Singleton", correct: false },
+          { answer: "Observer", correct: false },
+          { answer: "Command", correct: true },
         ],
       },
       correctAnswer: "Command",
@@ -95,7 +59,6 @@ async function main() {
       day: 1,
     },
   });
-  
 
   console.log("Day 1 questions seeded successfully!");
 }

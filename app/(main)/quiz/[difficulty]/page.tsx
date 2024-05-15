@@ -1,5 +1,6 @@
 import prisma from "@/prisma/client";
-import Answers from "./Answers";
+import QuizContainer from "./QuizContainer";
+import { currentUser } from "@clerk/nextjs/server";
 
 export const revalidate = 0;
 
@@ -11,17 +12,62 @@ const QuizPage = async ({ params }: { params: { difficulty: string } }) => {
     },
   });
 
-  if (!question) {
-    return <div>Page Not Found</div>;
-  }
+  if (!question) return <div>Page Not Found</div>;
 
   const answers = await prisma.answers.findMany({
     where: {
-      questionId: question?.id,
+      questionId: question.id,
     },
   });
 
-  console.log(answers);
+  const updateUserIfCorrect = async () => {
+    "use server";
+    const clerkUser = await currentUser();
+
+    const updateData: { [key: string]: any } = {
+      score: { increment: 10 },
+      streak: { increment: 1 },
+    };
+
+    if (params.difficulty === "beginner") {
+      updateData.beginnerAnswered = 1;
+    } else if (params.difficulty === "intermediate") {
+      updateData.intermediateAnswered = 1;
+    } else if (params.difficulty === "advanced") {
+      updateData.advancedAnswered = 1;
+    }
+
+    await prisma.user.update({
+      where: {
+        username: clerkUser?.username as string,
+      },
+      data: updateData,
+    });
+  };
+
+  const updateUserIfIncorrect = async () => {
+    "use server";
+    const clerkUser = await currentUser();
+
+    const updateData: { [key: string]: any } = {
+      streak: 0,
+    };
+
+    if (params.difficulty === "beginner") {
+      updateData.beginnerAnswered = 1;
+    } else if (params.difficulty === "intermediate") {
+      updateData.intermediateAnswered = 1;
+    } else if (params.difficulty === "advanced") {
+      updateData.advancedAnswered = 1;
+    }
+
+    await prisma.user.update({
+      where: {
+        username: clerkUser?.username as string,
+      },
+      data: updateData,
+    });
+  };
 
   return (
     <div>
@@ -29,12 +75,13 @@ const QuizPage = async ({ params }: { params: { difficulty: string } }) => {
         {params.difficulty.charAt(0).toUpperCase() + params.difficulty.slice(1)}{" "}
         Question
       </h1>
-      <h2>{question?.question}</h2>
-      <ul>
-        {answers?.map((answer) => (
-          <Answers answer={answer} key={answer.id} />
-        ))}
-      </ul>
+
+      <QuizContainer
+        answers={answers}
+        question={question}
+        userCorrect={updateUserIfCorrect}
+        userIncorrect={updateUserIfIncorrect}
+      />
     </div>
   );
 };
