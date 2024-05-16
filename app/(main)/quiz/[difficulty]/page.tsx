@@ -45,8 +45,8 @@ const QuizPage = async ({ params }: { params: { difficulty: string } }) => {
       </h1>
 
       <QuizContainer
-        answers={answers}
         question={question}
+        answers={answers}
         updateUser={updateUser}
       />
     </div>

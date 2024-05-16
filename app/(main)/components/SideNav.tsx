@@ -17,7 +17,7 @@ interface NavLink {
 const navLinks: NavLink[] = [
   { label: "Dashboard", path: "/dashboard", icon: LayoutDashboard },
   { label: "Leaderboard", path: "/leaderboard", icon: Trophy },
-  { label: "Profile", path: "/profile", icon: UserRound },
+  // { label: "Profile", path: "/profile", icon: UserRound },
 ];
 
 const SideNav = () => {
