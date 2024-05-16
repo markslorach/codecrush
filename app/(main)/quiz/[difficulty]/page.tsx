@@ -39,10 +39,13 @@ const QuizPage = async ({ params }: { params: { difficulty: string } }) => {
 
   return (
     <div>
-      <h1>
-        {params.difficulty.charAt(0).toUpperCase() + params.difficulty.slice(1)}{" "}
-        Question
-      </h1>
+      <header className="mb-28">
+        <h1 className="text-4xl font-bold md:text-[42px]">
+          {params.difficulty.charAt(0).toUpperCase() +
+            params.difficulty.slice(1)}{" "}
+          Question
+        </h1>
+      </header>
 
       <QuizContainer
         question={question}

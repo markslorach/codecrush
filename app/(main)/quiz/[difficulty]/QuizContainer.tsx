@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import NextQButton from "../../components/QuestionPagination";
 
 interface QuestionProps {
   id: number;
@@ -28,11 +29,8 @@ const QuizContainer = ({
   answers: AnswerProps[];
 }) => {
   const [selectedAnswer, setSelectedAnswer] = useState<AnswerProps>(answers[0]); // Store the selected answer object
-  // const [selectedAnswerIndex, setSelectedAnswerIndex] = useState();
   const [submitted, setSubmitted] = useState(false); // Track if the user has submitted
   const [disableSubmit, setDisableSubmit] = useState(false); // Disable the submit button after submission
-
-  console.log(selectedAnswer);
 
   const handleSubmit = () => {
     setTimeout(() => {
@@ -41,56 +39,66 @@ const QuizContainer = ({
   };
 
   return (
-    <section className="space-y-3">
-      <h2>{question?.question}</h2>
-
-      <RadioGroup defaultValue={`${0}`} disabled={disableSubmit} className="space-y-2">
-        {answers.map((answer, idx) => (
-          <div
-            key={answer.id}
-            className={cn({
-              "bg-green-600": submitted && answer.correct, // Correct answer
-              "bg-red-600":
-                submitted && !answer.correct && selectedAnswer === answer, // Incorrectly selected answer
-              "bg-white/5": !submitted && selectedAnswer === answer, // Selected answer before submission
-              "cursor-pointer rounded border pl-4 flex items-center space-x-4": true, // Always apply these styles
-            })}
-          >
-            <RadioGroupItem
-              value={`${idx}`}
-              id={`${idx}`}
-              onClick={() => {
-                setSelectedAnswer(answer);
-              }}
-            />
-            <Label
-              htmlFor={`${idx}`}
-              className="flex h-full w-full items-center py-6"
-            >
-              {answer.answer}
-            </Label>
-          </div>
-        ))}
-      </RadioGroup>
-
-      <form
-        onSubmit={(e) => {
-          updateUser(selectedAnswer?.correct ?? false);
-          e.preventDefault();
-          setDisableSubmit(true);
-        }}
-      >
-        <Button
-          onClick={handleSubmit}
+    <>
+    <section className="flex gap-6">
+      <div className="w-1/2 flex items-center pr-8">
+        <h2 className="text-2xl text-pretty">{question?.question}</h2>
+      </div>
+      <div className="w-1/2 space-y-4">
+        <RadioGroup
+          defaultValue={`${0}`}
           disabled={disableSubmit}
-          variant="outline"
-          type="submit"
-          className="w-full"
+          className="space-y-2"
         >
-          Submit
-        </Button>
-      </form>
+          {answers.map((answer, idx) => (
+            <div
+              key={answer.id}
+              className={cn({
+                "bg-green-600": submitted && answer.correct, // Correct answer
+                "bg-red-600":
+                  submitted && !answer.correct && selectedAnswer === answer, // Incorrectly selected answer
+                "bg-white/5": !submitted && selectedAnswer === answer, // Selected answer before submission
+                "flex items-center space-x-4 rounded-md border pl-4": true, // Always apply these styles
+              })}
+            >
+              <RadioGroupItem
+                value={`${idx}`}
+                id={`${idx}`}
+                onClick={() => {
+                  setSelectedAnswer(answer);
+                }}
+              />
+              <Label
+                htmlFor={`${idx}`}
+                className="flex h-full w-full cursor-pointer items-center py-6"
+              >
+                {answer.answer}
+              </Label>
+            </div>
+          ))}
+        </RadioGroup>
+
+        <form
+          onSubmit={(e) => {
+            updateUser(selectedAnswer?.correct ?? false);
+            e.preventDefault();
+            setDisableSubmit(true);
+          }}
+        >
+          <Button
+            onClick={handleSubmit}
+            disabled={disableSubmit}
+            variant="outline"
+            type="submit"
+            className="w-full"
+          >
+            Submit
+          </Button>
+        </form>
+      </div>
     </section>
+    <NextQButton/>
+    </>
   );
 };
 
