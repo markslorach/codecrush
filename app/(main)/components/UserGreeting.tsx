@@ -1,6 +1,6 @@
 import { currentUser } from "@clerk/nextjs/server";
-import prisma from "@/prisma/client";
 import { UserButton } from "@clerk/nextjs";
+import prisma from "@/prisma/client";
 
 interface ClerkUser {
   id: string;
@@ -20,7 +20,6 @@ const UserGreeting = async () => {
     await prisma.user.create({
       data: {
         username: user?.username,
-        uid: user?.id,
       },
     });
   }

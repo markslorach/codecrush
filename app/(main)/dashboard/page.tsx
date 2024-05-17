@@ -7,7 +7,7 @@ import Leaderboard from "../components/Leaderboard";
 
 export const dynamic = "force-dynamic";
 
-const Dashboard = () => {
+const Dashboard = async () => {
 
   return (
     <main>

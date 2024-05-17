@@ -4,7 +4,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
-import NextQButton from "../../components/QuestionPagination";
+import QuestionPagination from "../../components/QuestionPagination";
 
 interface QuestionProps {
   id: number;
@@ -30,7 +30,7 @@ const QuizContainer = ({
 }) => {
   const [selectedAnswer, setSelectedAnswer] = useState<AnswerProps>(answers[0]); // Store the selected answer object
   const [submitted, setSubmitted] = useState(false); // Track if the user has submitted
-  const [disableSubmit, setDisableSubmit] = useState(false); // Disable the submit button after submission
+  const [disabled, setDisabled] = useState(false); // Disable the submit button after submission
 
   const handleSubmit = () => {
     setTimeout(() => {
@@ -47,7 +47,7 @@ const QuizContainer = ({
       <div className="w-1/2 space-y-4">
         <RadioGroup
           defaultValue={`${0}`}
-          disabled={disableSubmit}
+          disabled={disabled}
           className="space-y-2"
         >
           {answers.map((answer, idx) => (
@@ -82,12 +82,12 @@ const QuizContainer = ({
           onSubmit={(e) => {
             updateUser(selectedAnswer?.correct ?? false);
             e.preventDefault();
-            setDisableSubmit(true);
+            setDisabled(true);
           }}
         >
           <Button
             onClick={handleSubmit}
-            disabled={disableSubmit}
+            disabled={disabled}
             variant="outline"
             type="submit"
             className="w-full"
@@ -97,7 +97,7 @@ const QuizContainer = ({
         </form>
       </div>
     </section>
-    <NextQButton/>
+    <QuestionPagination/>
     </>
   );
 };

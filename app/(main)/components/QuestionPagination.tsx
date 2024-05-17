@@ -1,8 +1,6 @@
-"use client";
-
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Button } from "@/components/ui/button";
 
 const QuestionPagination = () => {
   const pathname = usePathname();
@@ -21,19 +19,19 @@ const QuestionPagination = () => {
     nextNavigation = "/quiz/advanced";
   }
 
-  const isPrevDisabled = pathname === "/quiz/beginner";
-  const isNextDisabled = pathname === "/quiz/advanced";
+  const prevDisabled = pathname === "/quiz/beginner";
+  const nextDisabled = pathname === "/quiz/advanced";
 
   return (
     <div className="flex space-x-2">
       <Link href={prevNavigation}>
-        <Button disabled={isPrevDisabled} variant="outline">
+        <Button disabled={prevDisabled} variant="outline">
           Prev
         </Button>
       </Link>
 
       <Link href={nextNavigation}>
-        <Button disabled={isNextDisabled} variant="outline">
+        <Button disabled={nextDisabled} variant="outline">
           Next
         </Button>
       </Link>

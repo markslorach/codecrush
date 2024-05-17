@@ -34,7 +34,7 @@ const StatsList = async () => {
   let scoreDetail;
   if (currentUserRank === 1) {
     scoreDetail = "You have the highest score!";
-  } else if (dbUser?.score === 0) {
+  } else if (dbUser?.score === 0 || null) {
     scoreDetail = "Time to start earning points!";
   } else if (currentUserRank <= top5Percent) {
     scoreDetail = "Top 5% of users.";
