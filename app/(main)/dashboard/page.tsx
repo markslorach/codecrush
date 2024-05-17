@@ -1,3 +1,7 @@
+import { currentUser } from "@clerk/nextjs/server";
+import prisma from "@/prisma/client";
+import { Prisma } from "@prisma/client";
+
 // Components
 import ChallengeList from "@/app/(main)/components/ChallengeList";
 import StatsList from "@/app/(main)/components/StatsList";
@@ -5,9 +9,32 @@ import SubHeading from "@/app/(main)/components/SubHeading";
 import UserGreeting from "@/app/(main)/components/UserGreeting";
 import Leaderboard from "../components/Leaderboard";
 
+interface ClerkUser {
+  username: string;
+}
+
 export const dynamic = "force-dynamic";
 
 const Dashboard = async () => {
+  const user = (await currentUser()) as ClerkUser;
+
+  if (user) {
+    try {
+      await prisma.user.create({
+        data: { username: user?.username },
+      });
+    } catch (error) {
+      if (
+        error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === "P2002"
+      ) {
+        console.warn("User already exists:", user?.username);
+      } else {
+        console.error("Error creating user:", error);
+        throw error;
+      }
+    }
+  }
 
   return (
     <main>
@@ -23,7 +50,7 @@ const Dashboard = async () => {
           <SubHeading className="mb-5">Today&apos;s Challenge</SubHeading>
           <ChallengeList />
         </div>
-        <div className="hidden lg:inline md:w-2/3">
+        <div className="hidden md:w-2/3 lg:inline">
           <SubHeading className="mb-5">Leaderboard</SubHeading>
           <Leaderboard />
         </div>
