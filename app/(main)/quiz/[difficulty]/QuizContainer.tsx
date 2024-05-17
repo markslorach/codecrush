@@ -5,6 +5,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import QuestionPagination from "../../components/QuestionPagination";
+import CodeBox from "../../components/CodeBox";
 
 interface QuestionProps {
   id: number;
@@ -45,6 +46,7 @@ const QuizContainer = ({
         <h2 className="text-2xl text-pretty">{question?.question}</h2>
       </div>
       <div className="w-1/2 space-y-4">
+        <CodeBox/>
         <RadioGroup
           defaultValue={`${0}`}
           disabled={disabled}
