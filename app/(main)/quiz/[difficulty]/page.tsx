@@ -24,12 +24,17 @@ const QuizPage = async ({ params }: { params: { difficulty: string } }) => {
     "use server";
     const clerkUser = await currentUser();
 
-    let updateData: { [key: string]: any } = {
-      [params.difficulty + "Answered"]: 1,
-      streak: correct ? { increment: 1 } : 0,
-    };
+    const user = await prisma.user.findUnique({
+      where: { username: clerkUser?.username as string },
+    });
 
-    if (correct) updateData.score = { increment: 10 };
+    const score = user?.score ?? 0;
+
+    let updateData: { [key: string]: any } = {
+      [params.difficulty + "Answered"]: 1, // Dynamic key - computed property name
+      streak: correct ? { increment: 1 } : 0,
+      score: correct ? { increment: 10 } : score > 0 ? { decrement: 5 } : 0,
+    };
 
     await prisma.user.update({
       where: { username: clerkUser?.username as string },
