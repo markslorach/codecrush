@@ -48,7 +48,10 @@ const QuizPage = async ({ params }: { params: { difficulty: string } }) => {
       </header>
 
       <QuizContainer
-        question={question}
+        question={{
+          ...question,
+          code: question.code ?? ""
+        }}
         answers={answers}
         updateUser={updateUser}
       />

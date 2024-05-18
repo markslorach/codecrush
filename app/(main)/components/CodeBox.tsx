@@ -1,16 +1,19 @@
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { solarizedlight } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { solarizedlight } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-const CodeBox = () => {
-    const codeString = `function add(a, b) {
-      return a + b;
-    }`;
-  
-    return (
-      <SyntaxHighlighter language="javascript" style={solarizedlight}>
-        {codeString}
+const CodeBox = ({ code }: { code: string }) => {
+
+  return (
+    code && (
+      <SyntaxHighlighter
+        language="javascript"
+        style={solarizedlight}
+        showLineNumbers 
+      >
+        {code}
       </SyntaxHighlighter>
-    );
-  };
+    )
+  );
+};
 
-export default CodeBox
+export default CodeBox;

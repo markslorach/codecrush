@@ -50,7 +50,7 @@ const StatsList = async () => {
   if (currentUserRank === 1) {
     rankDetail = "You are top of the leaderboard!";
   } else if (dbUser?.score === null || dbUser?.score === 0) {
-    rankDetail = "Earn points to move up!";
+    rankDetail = "Earn points to rank up!";
   } else if (currentUserRank === 2) {
     rankDetail = "You are in 2nd place!";
   } else if (currentUserRank === 3) {

@@ -38,7 +38,7 @@ model Answers {
 model Questions {
   id             Int       @id(map: "Question_pkey") @default(autoincrement())
   question       String
-  codeImage      String?
+  code           String?   @db.Text
   correctAnswer  String
   difficulty     String
   day            Int

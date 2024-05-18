@@ -17,9 +17,11 @@ async function main() {
         ],
       },
       correctAnswer: "Green",
-      codeImage: null,
       difficulty: "beginner",
       day: 1,
+      code: `function add(a, b) {
+        return a + b;
+      }`
     },
   });
 
@@ -35,7 +37,6 @@ async function main() {
         ],
       },
       correctAnswer: "105",
-      codeImage: null,
       difficulty: "intermediate",
       day: 1,
     },
@@ -54,7 +55,6 @@ async function main() {
         ],
       },
       correctAnswer: "Command",
-      codeImage: null,
       difficulty: "advanced",
       day: 1,
     },
