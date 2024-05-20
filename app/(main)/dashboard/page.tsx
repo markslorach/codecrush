@@ -16,19 +16,21 @@ interface ClerkUser {
 export const dynamic = "force-dynamic";
 
 const Dashboard = async () => {
-  const user = (await currentUser()) as ClerkUser;
+  // Get Clerk user
+  const clerkUser = (await currentUser()) as ClerkUser;
 
-  if (user) {
+  // Create user if they don't exist in the database
+  if (clerkUser) {
     try {
       await prisma.user.create({
-        data: { username: user?.username },
+        data: { username: clerkUser?.username },
       });
     } catch (error) {
       if (
         error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === "P2002"
       ) {
-        console.warn("User already exists:", user?.username);
+        console.warn("User already exists:", clerkUser?.username);
       } else {
         console.error("Error creating user:", error);
         throw error;

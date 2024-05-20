@@ -30,7 +30,7 @@ const QuizPage = async ({ params }: { params: { difficulty: string } }) => {
 
     const score = user?.score ?? 0;
 
-    let updateData: { [key: string]: any } = {
+    const updateData: { [key: string]: any } = {
       [params.difficulty + "Answered"]: 1, // Dynamic key - computed property name
       streak: correct ? { increment: 1 } : 0,
       score: correct ? { increment: 10 } : score > 0 ? { decrement: 5 } : 0,
