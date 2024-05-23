@@ -18,7 +18,7 @@ The purpose of the rebuild is to create a faster, more efficient application wit
 ### Working on
 - Updating mobile responsiveness
 - Tweaks to quiz mechanics before setting up Prisma for development
-- Cleaning up fetch logic
+- Cleaning up fetch logic and error handling
 - Splitting quiz container into components
 - User profiles
 - Friend requests with group leaderboards
