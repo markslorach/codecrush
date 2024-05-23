@@ -2,7 +2,15 @@
 
 Quiz application with daily coding challenges. Answer questions correctly to build a streak, earn points and rank up on the leaderboard.
 
-### Working On
+### Tech stack
+- Next.js
+- TypeScript
+- Tailwind
+- Shadcn/ui
+- Prisma
+- Xata PostgreSQL
+
+### Working on
 - Tweaks to quiz mechanics before setting up Prisma for development
 - Cleaning up fetch logic
 - Splitting quiz container into components
