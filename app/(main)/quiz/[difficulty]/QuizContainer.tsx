@@ -4,8 +4,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useWindowSize } from "usehooks-ts";
 import Confetti from "react-confetti";
-import { useWindowSize as windowSize } from "usehooks-ts";
 
 // Components
 import QuestionPagination from "../../components/QuestionPagination";
@@ -42,11 +42,9 @@ const QuizContainer = ({
   const [disabled, setDisabled] = useState(false); // Disable the submit button after submission
   const [pending, setPending] = useState(false); // Track if the submission is pending
 
-  // React confetti
-  const [isExploding, setIsExploding] = useState(false);
-  const [confetti, setConfetti] = useState(true);
-
-  const { width, height } = windowSize();
+  // React confetti state
+  const [confetti, setConfetti] = useState(false);
+  const [confettiRecycle, setConfettiRecycle] = useState(true);
 
   const handleSubmit = () => {
     setPending(true);
@@ -54,23 +52,25 @@ const QuizContainer = ({
       setSubmitted(true);
       setPending(false);
       if (selectedAnswer.correct) {
-        setIsExploding(true);
-        setTimeout(() => setConfetti(false), 5000);
+        setConfetti(true);
+        setTimeout(() => setConfettiRecycle(false), 5000);
       }
     }, 1500);
   };
 
+  const { width, height } = useWindowSize();
+
   return (
     <>
-      {isExploding && (
+      {confetti && (
         <Confetti
           height={height}
           width={width}
           numberOfPieces={200}
-          recycle={confetti}
+          recycle={confettiRecycle}
         />
       )}
-      <section className="flex gap-6">
+      <section className="flex gap-6 mb-20">
         <div className="flex w-1/2 items-center pr-8">
           <h2 className="text-pretty text-2xl">{question?.question}</h2>
         </div>
@@ -139,6 +139,3 @@ const QuizContainer = ({
 };
 
 export default QuizContainer;
-function useWindowSize(): { width: any; height: any } {
-  throw new Error("Function not implemented.");
-}
