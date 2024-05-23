@@ -16,6 +16,7 @@ The purpose of the rebuild is to create a faster, more efficient application - u
 - Clerk Auth
 
 ### Working on
+- Updating mobile responsiveness
 - Tweaks to quiz mechanics before setting up Prisma for development
 - Cleaning up fetch logic
 - Splitting quiz container into components
