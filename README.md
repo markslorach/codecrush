@@ -29,3 +29,5 @@ The purpose of the rebuild is to create a faster, more efficient application wit
 
 ![codecrush_dashboard](https://github.com/markslorach/codecrush/assets/15185553/0607aaff-9e56-4d21-9f5c-c9bf292d3c87)
 
+<img src="https://github.com/markslorach/codecrush/assets/15185553/fcc45529-0d6a-4a78-bb82-fff512bc184b" width="300">
+
