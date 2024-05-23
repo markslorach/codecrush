@@ -9,6 +9,7 @@ Quiz application with daily coding challenges. Answer questions correctly to bui
 - Shadcn/ui
 - Prisma
 - Xata PostgreSQL
+- Clerk Auth
 
 ### Working on
 - Tweaks to quiz mechanics before setting up Prisma for development
