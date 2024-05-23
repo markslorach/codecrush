@@ -8,6 +8,7 @@ Quiz application with daily coding challenges. Answer questions correctly to bui
 - Splitting quiz container into components
 - User profiles
 - Friend requests with group leaderboards
+- AI generated questions with weekly cron sheduling
 
 ### Screenshots
 ![codecrush_home](https://github.com/markslorach/codecrush/assets/15185553/eaf15e5f-9f33-459d-a84a-3a062c3fbb8f)
