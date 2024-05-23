@@ -3,6 +3,7 @@
 Quiz application with daily coding challenges. Answer questions correctly to build a streak, earn points and rank up on the leaderboard.
 
 This is a solo rebuild of my group captone project at CodeClan - https://github.com/markslorach/codecrush-capstone.git
+<br>
 The purpose of the rebuild is to create a faster, more efficient application - utalising Next.js server-side capabilities and modern technologies.
 
 ### Tech stack
