@@ -53,7 +53,7 @@ const QuizContainer = ({
       setPending(false);
       if (selectedAnswer.correct) {
         setConfetti(true);
-        setTimeout(() => setConfettiRecycle(false), 5000);
+        setTimeout(() => setConfettiRecycle(false), 3000);
       }
     }, 1500);
   };
@@ -70,7 +70,7 @@ const QuizContainer = ({
           recycle={confettiRecycle}
         />
       )}
-      <section className="flex gap-6 mb-20">
+      <section className="md:flex gap-6 mb-20">
         <div className="flex w-1/2 items-center pr-8">
           <h2 className="text-pretty text-2xl">{question?.question}</h2>
         </div>

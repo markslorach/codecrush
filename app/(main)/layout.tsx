@@ -9,8 +9,8 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
       <div className="hidden min-h-screen flex-col border-r border-white/10 py-6 md:flex">
         <SideNav />
       </div>
-      <div className="h-screen flex-col px-5 py-8 md:overflow-y-auto container">
-        {children}
+      <div className="h-screen flex-col px-5 py-20 md:overflow-y-auto">
+        <div className="container">{children}</div>
       </div>
     </main>
   );

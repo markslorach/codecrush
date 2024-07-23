@@ -9,21 +9,17 @@ import SubHeading from "@/app/(main)/components/SubHeading";
 import UserGreeting from "@/app/(main)/components/UserGreeting";
 import Leaderboard from "../components/Leaderboard";
 
-interface ClerkUser {
-  username: string;
-}
-
 export const dynamic = "force-dynamic";
 
 const Dashboard = async () => {
   // Get Clerk user
-  const clerkUser = (await currentUser()) as ClerkUser;
+  const clerkUser = await currentUser()
 
   // Create user if they don't exist in the database
   if (clerkUser) {
     try {
       await prisma.user.create({
-        data: { username: clerkUser?.username },
+        data: { username: clerkUser?.username as string },
       });
     } catch (error) {
       if (

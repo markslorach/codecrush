@@ -5,7 +5,7 @@ import Leaderboard from "../components/Leaderboard";
 const LeaderboardPage = () => {
   return (
     <div>
-   <Leaderboard/>
+      <Leaderboard />
     </div>
   );
 };
