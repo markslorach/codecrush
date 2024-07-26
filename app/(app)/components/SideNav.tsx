@@ -8,11 +8,11 @@ import { cn } from "@/lib/utils";
 import { FaCode } from "react-icons/fa";
 import { Trophy, UserRound, LayoutDashboard } from "lucide-react";
 
-interface NavLink {
+type NavLink = {
   label: string;
   path: string;
   icon: any;
-}
+};
 
 const navLinks: NavLink[] = [
   { label: "Dashboard", path: "/dashboard", icon: LayoutDashboard },

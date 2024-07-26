@@ -5,6 +5,7 @@ import { currentUser } from "@clerk/nextjs/server";
 export const revalidate = 0;
 
 const QuizPage = async ({ params }: { params: { difficulty: string } }) => {
+  // Get question based on difficulty and day
   const question = await prisma.questions.findFirst({
     where: {
       difficulty: params.difficulty,
@@ -14,12 +15,14 @@ const QuizPage = async ({ params }: { params: { difficulty: string } }) => {
 
   if (!question) return <div>Page Not Found</div>;
 
+  // Get answers based on question ID
   const answers = await prisma.answers.findMany({
     where: {
       questionId: question.id,
     },
   });
 
+  // Update user stats
   const updateUser = async (correct: boolean) => {
     "use server";
     const clerkUser = await currentUser();

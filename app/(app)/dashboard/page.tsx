@@ -3,10 +3,10 @@ import prisma from "@/prisma/client";
 import { Prisma } from "@prisma/client";
 
 // Components
-import ChallengeList from "@/app/(main)/components/ChallengeList";
-import StatsList from "@/app/(main)/components/StatsList";
-import SubHeading from "@/app/(main)/components/SubHeading";
-import UserGreeting from "@/app/(main)/components/UserGreeting";
+import ChallengeList from "@/app/(app)/components/ChallengeList";
+import StatsList from "@/app/(app)/components/StatsList";
+import SubHeading from "@/app/(app)/components/SubHeading";
+import UserGreeting from "@/app/(app)/components/UserGreeting";
 import Leaderboard from "../components/Leaderboard";
 
 export const dynamic = "force-dynamic";

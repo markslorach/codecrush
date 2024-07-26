@@ -10,7 +10,7 @@ const UserGreeting = async () => {
 
   return (
     <header className="flex items-center justify-between">
-      <h1 className="text-4xl font-bold md:text-[42px]">
+      <h1 className="text-4xl font-bold">
         <span>Hello,</span>{" "}
         {user?.username.charAt(0).toUpperCase() + user?.username.slice(1)}!
       </h1>

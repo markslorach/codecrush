@@ -70,11 +70,11 @@ const QuizContainer = ({
           recycle={confettiRecycle}
         />
       )}
-      <section className="md:flex gap-6 mb-20">
-        <div className="flex w-1/2 items-center pr-8">
+      <section className="md:flex mb-20 border p-10 rounded-md">
+        <div className="flex md:w-1/2 items-center pr-8">
           <h2 className="text-pretty text-2xl">{question?.question}</h2>
         </div>
-        <div className="w-1/2 space-y-4">
+        <div className="md:w-1/2 space-y-4">
           <CodeBox code={question.code} />
           <RadioGroup
             defaultValue={`${0}`}
