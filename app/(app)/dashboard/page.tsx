@@ -36,14 +36,13 @@ const Dashboard = async () => {
 
   return (
     <main>
-      <header className="mb-28">
+      <header className="mb-20">
         <UserGreeting />
       </header>
       <section className="mb-20">
-        <SubHeading className="mb-5">Your Stats</SubHeading>
         <StatsList />
       </section>
-      <section className="mb-10 flex gap-14">
+      <section className="mb-10 flex gap-5">
         <div className="w-full lg:w-1/3">
           <SubHeading className="mb-5">Today&apos;s Challenge</SubHeading>
           <ChallengeList />

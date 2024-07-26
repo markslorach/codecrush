@@ -14,18 +14,18 @@ import CodeBox from "../../components/CodeBox";
 // Icons
 import { Code, LoaderCircle } from "lucide-react";
 
-interface QuestionProps {
+type QuestionProps = {
   id: number;
   question: string;
   correctAnswer: string;
   day: number;
-  code: string;
+  code: string | null;
 }
 
-interface AnswerProps {
+type AnswerProps = {
   id: number;
   answer: string;
-  correct: boolean | null;
+  correct: boolean;
 }
 
 const QuizContainer = ({
@@ -55,7 +55,7 @@ const QuizContainer = ({
         setConfetti(true);
         setTimeout(() => setConfettiRecycle(false), 3000);
       }
-    }, 1500);
+    }, 1000);
   };
 
   const { width, height } = useWindowSize();
@@ -70,12 +70,12 @@ const QuizContainer = ({
           recycle={confettiRecycle}
         />
       )}
-      <section className="md:flex mb-20 border p-10 rounded-md">
-        <div className="flex md:w-1/2 items-center pr-8">
+      <section className="md:flex mb-20 gap-10 space-y-10 lg:space-y-0">
+        <div className="flex md:w-1/2">
           <h2 className="text-pretty text-2xl">{question?.question}</h2>
         </div>
         <div className="md:w-1/2 space-y-4">
-          <CodeBox code={question.code} />
+          <CodeBox code={question.code as string} />
           <RadioGroup
             defaultValue={`${0}`}
             disabled={disabled}
@@ -85,11 +85,11 @@ const QuizContainer = ({
               <div
                 key={answer.id}
                 className={cn({
-                  "bg-green-600": submitted && answer.correct, // Correct answer
-                  "bg-red-600":
+                  "flex items-center space-x-4 rounded-lg bg-slate-800 pl-4": true, // Always apply these styles
+                  "bg-green-600/70": submitted && answer.correct, // Correct answer
+                  "bg-red-500/70":
                     submitted && !answer.correct && selectedAnswer === answer, // Incorrectly selected answer
-                  "bg-white/5": !submitted && selectedAnswer === answer, // Selected answer before submission
-                  "flex items-center space-x-4 rounded-md border pl-4": true, // Always apply these styles
+                  "bg-slate-700": !submitted && selectedAnswer === answer, // Selected answer before submission
                 })}
               >
                 <RadioGroupItem
@@ -121,13 +121,13 @@ const QuizContainer = ({
               disabled={disabled}
               variant="outline"
               type="submit"
-              className="w-full"
+              className="w-full py-6 border-none bg-blue-500/80"
             >
               Submit
               {pending ? (
-                <LoaderCircle className="ml-1.5 animate-spin" />
+                <LoaderCircle className="ml-1.5 animate-spin w-5 h-5" />
               ) : (
-                <Code className="ml-1.5 " />
+                <Code className="ml-1.5 w-5 h-5" />
               )}
             </Button>
           </form>

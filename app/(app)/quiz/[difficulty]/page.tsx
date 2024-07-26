@@ -48,7 +48,7 @@ const QuizPage = async ({ params }: { params: { difficulty: string } }) => {
   return (
     <div>
       <header className="mb-28">
-        <h1 className="text-4xl font-bold md:text-[42px]">
+        <h1 className="text-4xl font-bold">
           {params.difficulty.charAt(0).toUpperCase() +
             params.difficulty.slice(1)}{" "}
           Question
@@ -56,10 +56,7 @@ const QuizPage = async ({ params }: { params: { difficulty: string } }) => {
       </header>
 
       <QuizContainer
-        question={{
-          ...question,
-          code: question.code ?? ""
-        }}
+        question={question}
         answers={answers}
         updateUser={updateUser}
       />

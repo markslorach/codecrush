@@ -66,24 +66,30 @@ const StatsList = async () => {
 
   return (
     <div className="flex w-full flex-wrap gap-5 lg:flex-nowrap">
-      <StatCard
-        title={"Current Score"}
-        value={dbUser?.score ?? 0}
-        icon={<Star className="h-6 w-6 text-blue-400" />}
-        detail={scoreDetail}
-      />
-      <StatCard
-        title={"Current Streak"}
-        value={dbUser?.streak ?? 0}
-        icon={<Flame className="h-6 w-6 text-red-400" />}
-        detail={streakDetail}
-      />
-      <StatCard
-        title={"Current Rank"}
-        value={`#${currentUserRank ?? 0}`}
-        icon={<Trophy className="h-6 w-6 text-zinc-200" />}
-        detail={rankDetail}
-      />
+      <div className="lg:w-1/3 w-full">
+        <StatCard
+          title={"Current Score"}
+          value={dbUser?.score ?? 0}
+          icon={<Star className="h-6 w-6 text-blue-400" />}
+          detail={scoreDetail}
+        />
+      </div>
+      <div className="lg:w-1/3 w-full">
+        <StatCard
+          title={"Current Streak"}
+          value={dbUser?.streak ?? 0}
+          icon={<Flame className="h-6 w-6 text-red-400" />}
+          detail={streakDetail}
+        />
+      </div>
+      <div className="lg:w-1/3 w-full">
+        <StatCard
+          title={"Current Rank"}
+          value={`#${currentUserRank ?? 0}`}
+          icon={<Trophy className="h-6 w-6 text-zinc-200" />}
+          detail={rankDetail}
+        />
+      </div>
     </div>
   );
 };

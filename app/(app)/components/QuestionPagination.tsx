@@ -23,7 +23,7 @@ const QuestionPagination = () => {
   const nextDisabled = pathname === "/quiz/advanced";
 
   return (
-    <div className="flex space-x-2">
+    <div className="flex space-x-2 justify-end">
       <Link href={prevNavigation}>
         <Button disabled={prevDisabled} variant="outline">
           Prev

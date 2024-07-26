@@ -25,7 +25,7 @@ model User {
 model Answers {
   id             Int       @id(map: "Answer_pkey") @default(autoincrement())
   answer         String
-  correct        Boolean?
+  correct        Boolean
   questionId     Int
   xata_id        String    @unique(map: "Answer__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
   xata_version   Int       @default(0)
