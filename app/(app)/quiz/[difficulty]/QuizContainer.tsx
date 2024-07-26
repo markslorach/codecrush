@@ -9,6 +9,8 @@ import { Code, LoaderCircle } from "lucide-react";
 import Confetti from "react-confetti";
 import QuestionPagination from "../../components/QuestionPagination";
 import CodeBox from "../../components/CodeBox";
+import { motion } from 'framer-motion';
+
 
 type QuestionProps = {
   id: number;
@@ -16,13 +18,13 @@ type QuestionProps = {
   correctAnswer: string;
   day: number;
   code: string | null;
-}
+};
 
 type AnswerProps = {
   id: number;
   answer: string;
   correct: boolean;
-}
+};
 
 const QuizContainer = ({
   updateUser,
@@ -66,11 +68,11 @@ const QuizContainer = ({
           recycle={confettiRecycle}
         />
       )}
-      <section className="md:flex mb-20 gap-10 space-y-10 lg:space-y-0">
+      <section className="mb-20 gap-10 space-y-10 md:flex lg:space-y-0">
         <div className="flex md:w-1/2">
           <h2 className="text-pretty text-2xl">{question?.question}</h2>
         </div>
-        <div className="md:w-1/2 space-y-4">
+        <div className="space-y-4 md:w-1/2">
           <CodeBox code={question.code as string} />
           <RadioGroup
             defaultValue={`${0}`}
@@ -78,15 +80,21 @@ const QuizContainer = ({
             className="space-y-2"
           >
             {answers.map((answer, idx) => (
-              <div
+              <motion.div
                 key={answer.id}
-                className={cn({
-                  "flex items-center space-x-4 rounded-lg bg-slate-800 pl-4": true, // Always apply these styles
-                  "bg-green-600/70": submitted && answer.correct, // Correct answer
-                  "bg-red-500/70":
-                    submitted && !answer.correct && selectedAnswer === answer, // Incorrectly selected answer
-                  "bg-slate-700": !submitted && selectedAnswer === answer, // Selected answer before submission
-                })}
+                // initial={{ opacity: 0 }} 
+                // animate={{ opacity: 1 }}
+                // transition={{ delay: idx * 0.2 }}
+                className={cn(
+                  "flex items-center space-x-4 rounded-lg bg-slate-800 pl-4 transition-colors",
+                  {
+                    "hover:bg-slate-700": !disabled,
+                    "bg-green-600/70": submitted && answer.correct,
+                    "bg-red-500/70":
+                      submitted && !answer.correct && selectedAnswer === answer,
+                    "bg-slate-700": !submitted && selectedAnswer === answer,
+                  },
+                )}
               >
                 <RadioGroupItem
                   value={`${idx}`}
@@ -101,7 +109,7 @@ const QuizContainer = ({
                 >
                   {answer.answer}
                 </Label>
-              </div>
+              </motion.div>
             ))}
           </RadioGroup>
 
@@ -117,13 +125,13 @@ const QuizContainer = ({
               disabled={disabled}
               variant="outline"
               type="submit"
-              className="w-full py-6 border-none bg-blue-500/80"
+              className="w-full border-none bg-blue-500/80 py-6"
             >
               Submit
               {pending ? (
-                <LoaderCircle className="ml-1.5 animate-spin w-5 h-5" />
+                <LoaderCircle className="ml-1.5 h-5 w-5 animate-spin" />
               ) : (
-                <Code className="ml-1.5 w-5 h-5" />
+                <Code className="ml-1.5 h-5 w-5" />
               )}
             </Button>
           </form>
