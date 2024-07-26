@@ -68,12 +68,15 @@ const QuizContainer = ({
           recycle={confettiRecycle}
         />
       )}
-      <section className="mb-20 gap-10 space-y-10 md:flex lg:space-y-0">
-        <div className="flex md:w-1/2">
+      <section className="mb-20 gap-10 md:space-y-0 space-y-10  md:flex ">
+        <div className="flex flex-col gap-10 justify-between md:w-1/2">
           <h2 className="text-pretty text-2xl">{question?.question}</h2>
+          <div className="-my-2">
+
+          <CodeBox code={question.code as string} />
+          </div>
         </div>
         <div className="space-y-4 md:w-1/2">
-          <CodeBox code={question.code as string} />
           <RadioGroup
             defaultValue={`${0}`}
             disabled={disabled}
