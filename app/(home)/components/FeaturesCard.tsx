@@ -10,7 +10,7 @@ interface HomeCardProps {
 
 const FeaturesCard = ({ icon, title, description }: HomeCardProps) => {
   return (
-    <Card className="group w-full space-y-5 rounded-md border border-white/40 bg-white/5 p-3.5 text-white/90 transition-colors duration-300 ease-in-out hover:border-white/70 md:w-1/3">
+    <Link href="/dashboard" className="group w-full space-y-5 rounded-md border border-white/30 bg-slate-800 p-3.5 text-white/90 transition-colors duration-300 ease-in-out hover:border-white/60 md:w-1/3">
       <div className="w-fit rounded-full border border-white/20 p-2.5">
         <span>{icon}</span>
       </div>
@@ -21,10 +21,10 @@ const FeaturesCard = ({ icon, title, description }: HomeCardProps) => {
         </CardDescription>
       </div>
       <div className="flex w-fit items-center space-x-2 text-blue-300 transition-colors duration-300 ease-in-out hover:text-blue-200">
-        <Link href="/dashboard">Get started</Link>
+        <span>Get started</span>
         <MoveRight className="transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
       </div>
-    </Card>
+    </Link>
   );
 };
 

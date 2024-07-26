@@ -5,14 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useWindowSize } from "usehooks-ts";
+import { Code, LoaderCircle } from "lucide-react";
 import Confetti from "react-confetti";
-
-// Components
 import QuestionPagination from "../../components/QuestionPagination";
 import CodeBox from "../../components/CodeBox";
-
-// Icons
-import { Code, LoaderCircle } from "lucide-react";
 
 type QuestionProps = {
   id: number;

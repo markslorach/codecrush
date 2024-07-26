@@ -47,7 +47,7 @@ const QuizPage = async ({ params }: { params: { difficulty: string } }) => {
 
   return (
     <div>
-      <header className="mb-28">
+      <header className="mb-20">
         <h1 className="text-4xl font-bold">
           {params.difficulty.charAt(0).toUpperCase() +
             params.difficulty.slice(1)}{" "}

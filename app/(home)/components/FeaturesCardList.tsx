@@ -1,7 +1,7 @@
 import FeaturesCard from "./FeaturesCard";
 import { Brain, Trophy, Flame } from "lucide-react";
 
-interface Props {
+type Props = {
   icon: any;
   title: string;
   description: string;
