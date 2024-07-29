@@ -128,7 +128,7 @@ const QuizContainer = ({
               disabled={disabled}
               variant="outline"
               type="submit"
-              className="w-full border-none bg-blue-500/80 py-6"
+              className="w-full border-none bg-blue-500/80 hover:bg-blue-500 transition-colors py-6"
             >
               Submit
               {pending ? (

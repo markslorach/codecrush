@@ -24,7 +24,7 @@ const ChallengeCard = ({ icon, title, description }: ChallengeCardProps) => {
     <>
       <Dialog>
         <DialogTrigger asChild>
-          <Card className="bg-900 group w-full cursor-pointer space-y-5 rounded-md border border-white/40 bg-slate-900 px-6 pb-5 pt-6 text-white/90 transition-colors duration-300 ease-in-out hover:border-white/70">
+          <Card className="bg-900 group w-full cursor-pointer space-y-5 rounded-md bg-slate-800 px-6 pb-5 pt-6 text-white/90 transition-colors duration-300 ease-in-out hover:bg-slate-800/80">
             <span>{icon}</span>
             <div className="space-y-1">
               <CardTitle className="text-xl">{title}</CardTitle>
