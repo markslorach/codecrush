@@ -1,30 +1,14 @@
-import { currentUser } from "@clerk/nextjs/server";
-import prisma from "@/prisma/client";
+import { User } from "@prisma/client";
+import { Star, Trophy, Flame } from "lucide-react";
+import { getAllUsers, getUser } from "@/lib/user";
 import StatCard from "./StatCard";
 
-// Icons
-import { Star, Trophy, Flame } from "lucide-react";
-
 const StatsList = async () => {
-  const clerkUser = await currentUser();
+  const dbUser = (await getUser()) as User;
+  const allDbUsers = (await getAllUsers()) as User[];
 
-  // Find logged in user in the database
-  const dbUser = await prisma.user.findUnique({
-    where: {
-      username: clerkUser?.username as string,
-    },
-  });
-
-  // Find all users in the database
-  const allDbUsers = await prisma.user.findMany({
-    orderBy: {
-      score: "desc",
-    },
-  });
-
-  // Find logged in user index in the database
   const currentUserRank =
-    allDbUsers.findIndex((user) => user.username === dbUser?.username) + 1;
+    allDbUsers.findIndex((user) => user.username === dbUser.username) + 1;
 
   const totalUsers = allDbUsers.length;
   const top5Percent = Math.ceil(totalUsers * 0.05);
@@ -34,7 +18,7 @@ const StatsList = async () => {
   let scoreDetail;
   if (currentUserRank === 1) {
     scoreDetail = "You have the highest score!";
-  } else if (dbUser?.score === null || dbUser?.score === 0) {
+  } else if (dbUser.score === null || dbUser.score === 0) {
     scoreDetail = "Time to start earning points!";
   } else if (currentUserRank <= top5Percent) {
     scoreDetail = "Top 5% of users.";
@@ -49,7 +33,7 @@ const StatsList = async () => {
   let rankDetail;
   if (currentUserRank === 1) {
     rankDetail = "You are top of the leaderboard!";
-  } else if (dbUser?.score === null || dbUser?.score === 0) {
+  } else if (dbUser.score === null || dbUser.score === 0) {
     rankDetail = "Earn points to rank up!";
   } else if (currentUserRank === 2) {
     rankDetail = "You are in 2nd place!";
@@ -62,27 +46,27 @@ const StatsList = async () => {
   }
 
   const streakDetail =
-    dbUser?.streak === 0 ? "Time to start a streak!" : "Keep it up!";
+    dbUser.streak === 0 ? "Time to start a streak!" : "Keep it up!";
 
   return (
     <div className="flex w-full flex-wrap gap-5 lg:flex-nowrap">
-      <div className="lg:w-1/3 w-full">
+      <div className="w-full lg:w-1/3">
         <StatCard
           title={"Current Score"}
-          value={dbUser?.score ?? 0}
+          value={dbUser.score ?? 0}
           icon={<Star className="h-6 w-6 text-blue-400" />}
           detail={scoreDetail}
         />
       </div>
-      <div className="lg:w-1/3 w-full">
+      <div className="w-full lg:w-1/3">
         <StatCard
           title={"Current Streak"}
-          value={dbUser?.streak ?? 0}
+          value={dbUser.streak ?? 0}
           icon={<Flame className="h-6 w-6 text-red-400" />}
           detail={streakDetail}
         />
       </div>
-      <div className="lg:w-1/3 w-full">
+      <div className="w-full lg:w-1/3">
         <StatCard
           title={"Current Rank"}
           value={`#${currentUserRank ?? 0}`}

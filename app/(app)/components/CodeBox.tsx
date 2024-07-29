@@ -8,7 +8,7 @@ const CodeBox = ({ code }: { code: string }) => {
       <SyntaxHighlighter
         language="javascript"
         style={solarizedlight}
-        showLineNumbers 
+        // showLineNumbers 
       >
         {code}
       </SyntaxHighlighter>

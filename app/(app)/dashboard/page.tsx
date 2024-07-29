@@ -13,26 +13,26 @@ export const dynamic = "force-dynamic";
 
 const Dashboard = async () => {
   // Get Clerk user
-  const clerkUser = await currentUser()
+  // const clerkUser = await currentUser()
 
-  // Create user if they don't exist in the database
-  if (clerkUser) {
-    try {
-      await prisma.user.create({
-        data: { username: clerkUser?.username as string },
-      });
-    } catch (error) {
-      if (
-        error instanceof Prisma.PrismaClientKnownRequestError &&
-        error.code === "P2002"
-      ) {
-        console.warn("User already exists:", clerkUser?.username);
-      } else {
-        console.error("Error creating user:", error);
-        throw error;
-      }
-    }
-  }
+  // // Create user if they don't exist in the database
+  // if (clerkUser) {
+  //   try {
+  //     await prisma.user.create({
+  //       data: { username: clerkUser?.username as string },
+  //     });
+  //   } catch (error) {
+  //     if (
+  //       error instanceof Prisma.PrismaClientKnownRequestError &&
+  //       error.code === "P2002"
+  //     ) {
+  //       console.warn("User already exists:", clerkUser?.username);
+  //     } else {
+  //       console.error("Error creating user:", error);
+  //       throw error;
+  //     }
+  //   }
+  // }
 
   return (
     <main>
@@ -42,13 +42,13 @@ const Dashboard = async () => {
       <section className="mb-20">
         <StatsList />
       </section>
-      <section className="mb-10 flex gap-5">
-        <div className="w-full lg:w-1/3">
-          <SubHeading className="mb-5">Today&apos;s Challenge</SubHeading>
+      <section className="mb-10 gap-5 grid grid-cols-1 lg:grid-cols-3">
+        <div className="col-span-1">
+          <SubHeading className="mb-5 font-semibold">Today&apos;s Challenge</SubHeading>
           <ChallengeList />
         </div>
-        <div className="hidden md:w-2/3 lg:inline">
-          <SubHeading className="mb-5">Leaderboard</SubHeading>
+        <div className="hidden lg:inline col-span-2">
+          <SubHeading className="mb-5 font-semibold">Leaderboard</SubHeading>
           <Leaderboard />
         </div>
       </section>
