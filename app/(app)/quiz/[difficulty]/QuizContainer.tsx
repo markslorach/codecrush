@@ -9,33 +9,17 @@ import { Code, LoaderCircle } from "lucide-react";
 import Confetti from "react-confetti";
 import QuestionPagination from "../../components/QuestionPagination";
 import CodeBox from "../../components/CodeBox";
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
+import { Answers, Questions } from "@prisma/client";
 
-
-type QuestionProps = {
-  id: number;
-  question: string;
-  correctAnswer: string;
-  day: number;
-  code: string | null;
-};
-
-type AnswerProps = {
-  id: number;
-  answer: string;
-  correct: boolean;
-};
-
-const QuizContainer = ({
-  updateUser,
-  question,
-  answers,
-}: {
+interface Props {
   updateUser: (correct: boolean) => void;
-  question: QuestionProps;
-  answers: AnswerProps[];
-}) => {
-  const [selectedAnswer, setSelectedAnswer] = useState<AnswerProps>(answers[0]); // Store the selected answer object
+  question: Questions;
+  answers: Answers[];
+}
+
+const QuizContainer = ({ updateUser, question, answers }: Props) => {
+  const [selectedAnswer, setSelectedAnswer] = useState<Answers>(answers[0]); // Store the selected answer object
   const [submitted, setSubmitted] = useState(false); // Track if the user has submitted
   const [disabled, setDisabled] = useState(false); // Disable the submit button after submission
   const [pending, setPending] = useState(false); // Track if the submission is pending
@@ -68,12 +52,13 @@ const QuizContainer = ({
           recycle={confettiRecycle}
         />
       )}
-      <section className="mb-20 gap-10 grid grid-cols-1 lg:grid-cols-2">
-        <div className="flex flex-col gap-10 justify-between">
-          <h2 className="text-pretty text-xl md:text-2xl">{question?.question}</h2>
+      <section className="mb-20 grid grid-cols-1 gap-10 lg:grid-cols-2">
+        <div className="flex flex-col justify-between gap-10">
+          <h2 className="text-pretty text-xl md:text-2xl">
+            {question?.question}
+          </h2>
           <div className="-my-2">
-
-          <CodeBox code={question.code as string} />
+            <CodeBox code={question.code as string} />
           </div>
         </div>
         <div className="space-y-4">
@@ -85,7 +70,7 @@ const QuizContainer = ({
             {answers.map((answer, idx) => (
               <motion.div
                 key={answer.id}
-                // initial={{ opacity: 0 }} 
+                // initial={{ opacity: 0 }}
                 // animate={{ opacity: 1 }}
                 // transition={{ delay: idx * 0.2 }}
                 className={cn(
@@ -128,7 +113,7 @@ const QuizContainer = ({
               disabled={disabled}
               variant="outline"
               type="submit"
-              className="w-full border-none bg-blue-500/80 hover:bg-blue-500 transition-colors py-6"
+              className="w-full border-none bg-blue-500/80 py-6 transition-colors hover:bg-blue-500"
             >
               Submit
               {pending ? (
