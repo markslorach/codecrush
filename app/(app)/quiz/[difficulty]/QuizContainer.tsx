@@ -44,7 +44,7 @@ const QuizContainer = ({
 
   useEffect(() => {
     if (userAnswered) setDisabled(true);
-  }, []);
+  }, [userAnswered]);
 
   const handleSubmit = () => {
     setPending(true);

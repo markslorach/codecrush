@@ -1,11 +1,11 @@
-interface StatCardProps {
+type Props = {
   title: string;
   value: string | number;
   icon: any;
   detail: string;
 }
 
-const StatCard = ({ title, value, icon, detail }: StatCardProps) => {
+const StatCard = ({ title, value, icon, detail }: Props) => {
   return (
     <div className="bg-slate-800 flex flex-col space-y-8 rounded-md p-6">
       <div className="flex justify-between w-full items-center">

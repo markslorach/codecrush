@@ -5,9 +5,7 @@ import StatCard from "./StatCard";
 
 const StatsList = async () => {
   const user = (await getUser()) as User;
-  console.log(user)
   const allUsers = (await getAllUsers()) as User[];
-  // console.log(allUsers)
 
   const currentUserRank =
     allUsers.findIndex((user) => user.username === user.username) + 1;
