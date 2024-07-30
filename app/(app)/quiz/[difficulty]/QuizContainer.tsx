@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
@@ -10,15 +10,25 @@ import Confetti from "react-confetti";
 import QuestionPagination from "../../components/QuestionPagination";
 import CodeBox from "../../components/CodeBox";
 import { motion } from "framer-motion";
-import { Answers, Questions } from "@prisma/client";
+import { Answers, Questions, User } from "@prisma/client";
 
 interface Props {
   updateUser: (correct: boolean) => void;
+  user: User;
   question: Questions;
   answers: Answers[];
+  day: number;
+  difficulty: string;
 }
 
-const QuizContainer = ({ updateUser, question, answers }: Props) => {
+const QuizContainer = ({
+  updateUser,
+  question,
+  answers,
+  user,
+  day,
+  difficulty,
+}: Props) => {
   const [selectedAnswer, setSelectedAnswer] = useState<Answers>(answers[0]); // Store the selected answer object
   const [submitted, setSubmitted] = useState(false); // Track if the user has submitted
   const [disabled, setDisabled] = useState(false); // Disable the submit button after submission
@@ -27,6 +37,14 @@ const QuizContainer = ({ updateUser, question, answers }: Props) => {
   // React confetti state
   const [confetti, setConfetti] = useState(false);
   const [confettiRecycle, setConfettiRecycle] = useState(true);
+
+  const { width, height } = useWindowSize();
+
+  const userAnswered = (user as any)[difficulty + "Answered"] === day;
+
+  useEffect(() => {
+    if (userAnswered) setDisabled(true);
+  }, []);
 
   const handleSubmit = () => {
     setPending(true);
@@ -39,8 +57,6 @@ const QuizContainer = ({ updateUser, question, answers }: Props) => {
       }
     }, 1000);
   };
-
-  const { width, height } = useWindowSize();
 
   return (
     <>

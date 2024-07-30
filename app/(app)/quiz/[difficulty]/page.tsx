@@ -1,7 +1,7 @@
 import prisma from "@/prisma/client";
 import QuizContainer from "./QuizContainer";
 import { getAnswers, getQuestion } from "@/lib/quiz";
-import { Answers } from "@prisma/client";
+import { Answers, User } from "@prisma/client";
 import { getUser } from "@/lib/user";
 import { capitaliseString, getDay } from "@/utils/helpers";
 
@@ -10,12 +10,12 @@ export const revalidate = 0;
 const QuizPage = async ({ params }: { params: { difficulty: string } }) => {
 
   const day = getDay()
-
   const question = await getQuestion(params.difficulty, day);
 
   if (!question) return;
 
   const answers = (await getAnswers(question.id)) as Answers[]
+  const user = await getUser() as User
 
   // Update user stats
   const updateUser = async (correct: boolean) => {
@@ -60,6 +60,9 @@ const QuizPage = async ({ params }: { params: { difficulty: string } }) => {
         question={question}
         answers={answers}
         updateUser={updateUser}
+        user={user}
+        day={day}
+        difficulty={params.difficulty}
       />
     </div>
   );
