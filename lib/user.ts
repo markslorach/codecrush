@@ -5,22 +5,23 @@ import { currentUser } from "@clerk/nextjs/server";
 export async function getUser() {
   try {
     const clerkUser = await currentUser();
+    const username = clerkUser?.username as string;
 
     if (!clerkUser) return;
 
     let user = await prisma.user.findUnique({
-      where: { username: clerkUser.username as string },
+      where: { username },
     });
 
     if (!user) {
       user = await prisma.user.create({
-        data: { username: clerkUser.username as string },
+        data: { username },
       });
     }
 
     return user;
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 }
 

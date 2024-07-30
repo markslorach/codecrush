@@ -1,4 +1,5 @@
 import prisma from "@/prisma/client";
+import { getDay } from "@/utils/helpers";
 
 // Get question from the database based on difficulty and day
 export async function getQuestion(difficulty: string, day: number) {

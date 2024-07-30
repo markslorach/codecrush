@@ -3,16 +3,19 @@ import QuizContainer from "./QuizContainer";
 import { getAnswers, getQuestion } from "@/lib/quiz";
 import { Answers } from "@prisma/client";
 import { getUser } from "@/lib/user";
-import { capitaliseString } from "@/utils/helpers";
+import { capitaliseString, getDay } from "@/utils/helpers";
 
 export const revalidate = 0;
 
 const QuizPage = async ({ params }: { params: { difficulty: string } }) => {
-  const question = await getQuestion(params.difficulty, 1);
+
+  const day = getDay()
+
+  const question = await getQuestion(params.difficulty, day);
 
   if (!question) return;
 
-  const answers = (await getAnswers(question.id)) as Answers[];
+  const answers = (await getAnswers(question.id)) as Answers[]
 
   // Update user stats
   const updateUser = async (correct: boolean) => {
@@ -26,7 +29,7 @@ const QuizPage = async ({ params }: { params: { difficulty: string } }) => {
       }
 
       const updateData: { [key: string]: any } = {
-        [params.difficulty + "Answered"]: 1,
+        [params.difficulty + "Answered"]: day,
         streak: correct ? { increment: 1 } : 0,
         score: correct
           ? { increment: 10 }

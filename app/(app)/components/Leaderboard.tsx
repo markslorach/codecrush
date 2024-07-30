@@ -6,19 +6,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import prisma from "@/prisma/client";
+import { getAllUsers } from "@/lib/user";
+import { User } from "@prisma/client";
 
 const Leaderboard = async () => {
-  const users = await prisma.user.findMany({
-    orderBy: {
-      score: "desc",
-    },
-  });
+  const users = (await getAllUsers()) as User[];
 
   const filteredUsers = users.filter((user) => user.score > 0);
 
   return (
-    <section className="border border-white/40 rounded-md">
+    <section className="rounded-md border border-white/40">
       <Table>
         <TableHeader className="h-20">
           <TableRow className="border-b-white/20 text-base">
@@ -28,7 +25,7 @@ const Leaderboard = async () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {filteredUsers?.slice(0, 5).map((user, idx) => (
+          {filteredUsers.slice(0, 5).map((user, idx) => (
             <TableRow
               className={`${idx % 2 === 0 ? "bg-white/5" : ""} border-white/20`}
               key={user.id}

@@ -4,7 +4,7 @@ import { User } from "@prisma/client";
 import { capitaliseString } from "@/utils/helpers";
 
 const UserGreeting = async () => {
-  const user = (await getUser()) as User;
+  const user = (await getUser()) as User
 
   return (
     <header className="flex items-center justify-between">
