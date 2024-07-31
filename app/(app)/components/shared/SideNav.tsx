@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 // Icons
 import { FaCode } from "react-icons/fa";
 import { Trophy, UserRound, LayoutDashboard } from "lucide-react";
-import { SignOutButton } from "./SignOutButton";
+import { SignOutButton } from "../dashboard/SignOutButton";
 
 type NavLink = {
   label: string;

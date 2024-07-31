@@ -1,5 +1,5 @@
 import { FaCode } from "react-icons/fa";
-import SideNav from "./(app)/components/SideNav";
+import SideNav from "./(app)/components/shared/SideNav";
 
 const loading = () => {
   return (
