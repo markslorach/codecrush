@@ -1,16 +1,14 @@
 "use client";
-import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useWindowSize } from "usehooks-ts";
-import { Code, LoaderCircle } from "lucide-react";
 import { updateUserAction } from "@/app/actions";
 import { Answers, Questions, User } from "@prisma/client";
 import Confetti from "react-confetti";
 import QuestionPagination from "../../components/QuestionPagination";
 import CodeBox from "../../components/CodeBox";
+import Question from "../../components/quiz/Question";
+import AnswersList from "../../components/quiz/AnswersList";
+import SubmitButton from "../../components/quiz/SubmitButton";
 
 interface Props {
   user: User;
@@ -76,64 +74,19 @@ const QuizContainer = ({ question, answers, user, day, difficulty }: Props) => {
       )}
       <section className="mb-20 grid grid-cols-1 gap-10 lg:grid-cols-2">
         <div className="flex flex-col justify-between gap-10">
-          <h2 className="text-pretty text-xl md:text-2xl">
-            {question?.question}
-          </h2>
-          <div>
-            <CodeBox code={question.code?.trim() as string} />
-          </div>
+          <Question question={question} />
+          <CodeBox code={question.code?.trim() as string} />
         </div>
         <div className="space-y-4">
-          <RadioGroup
-            defaultValue={`${0}`}
+          <AnswersList
+            answers={answers}
             disabled={disabled}
-            className="space-y-2"
-          >
-            {answers.map((answer, idx) => (
-              <div
-                key={answer.id}
-                className={cn(
-                  "flex items-center space-x-4 rounded-lg bg-slate-800 pl-4 transition-colors",
-                  {
-                    "hover:bg-slate-700": !disabled,
-                    "bg-green-600/70": submitted && answer.correct,
-                    "bg-red-500/70":
-                      submitted && !answer.correct && selectedAnswer === answer,
-                    "bg-slate-700": !submitted && selectedAnswer === answer,
-                  },
-                )}
-              >
-                <RadioGroupItem
-                  value={`${idx}`}
-                  id={`${idx}`}
-                  onClick={() => {
-                    setSelectedAnswer(answer);
-                  }}
-                />
-                <Label
-                  htmlFor={`${idx}`}
-                  className="flex h-full w-full cursor-pointer items-center py-6"
-                >
-                  {answer.answer}
-                </Label>
-              </div>
-            ))}
-          </RadioGroup>
-
+            submitted={submitted}
+            selectedAnswer={selectedAnswer}
+            setSelectedAnswer={setSelectedAnswer}
+          />
           <form action={updateUser}>
-            <Button
-              disabled={disabled}
-              variant="outline"
-              type="submit"
-              className="w-full border-none bg-blue-500/80 py-6 transition-colors hover:bg-blue-500"
-            >
-              Submit
-              {pending ? (
-                <LoaderCircle className="ml-1.5 h-5 w-5 animate-spin" />
-              ) : (
-                <Code className="ml-1.5 h-5 w-5" />
-              )}
-            </Button>
+            <SubmitButton disabled={disabled} pending={pending} />
           </form>
         </div>
       </section>
