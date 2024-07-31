@@ -6,14 +6,14 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useWindowSize } from "usehooks-ts";
 import { Code, LoaderCircle } from "lucide-react";
+import { updateUser } from "@/app/actions";
+import { motion } from "framer-motion";
+import { Answers, Questions, User } from "@prisma/client";
 import Confetti from "react-confetti";
 import QuestionPagination from "../../components/QuestionPagination";
 import CodeBox from "../../components/CodeBox";
-import { motion } from "framer-motion";
-import { Answers, Questions, User } from "@prisma/client";
 
 interface Props {
-  updateUser: (correct: boolean) => void;
   user: User;
   question: Questions;
   answers: Answers[];
@@ -21,14 +21,7 @@ interface Props {
   difficulty: string;
 }
 
-const QuizContainer = ({
-  updateUser,
-  question,
-  answers,
-  user,
-  day,
-  difficulty,
-}: Props) => {
+const QuizContainer = ({ question, answers, user, day, difficulty }: Props) => {
   const [selectedAnswer, setSelectedAnswer] = useState<Answers>(answers[0]); // Store the selected answer object
   const [submitted, setSubmitted] = useState(false); // Track if the user has submitted
   const [disabled, setDisabled] = useState(false); // Disable the submit button after submission
@@ -119,7 +112,7 @@ const QuizContainer = ({
 
           <form
             onSubmit={(e) => {
-              updateUser(selectedAnswer?.correct ?? false);
+              updateUser(selectedAnswer?.correct, difficulty);
               e.preventDefault();
               setDisabled(true);
             }}

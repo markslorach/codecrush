@@ -13,7 +13,7 @@ const Dashboard = async () => {
         <UserGreeting />
       </header>
       <section className="mb-20">
-        <StatsList />
+          <StatsList />
       </section>
       <section className="mb-10 grid grid-cols-1 gap-5 lg:grid-cols-3">
         <div className="col-span-1">
