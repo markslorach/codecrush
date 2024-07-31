@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect } from "react";
 import SideNav from "./components/SideNav";
-import MobileNav from "./components/MobileNav";
+import MobileNav from "./components/shared/MobileNav";
 
 const MainLayout = ({ children }: { children: ReactNode }) => {
   return (

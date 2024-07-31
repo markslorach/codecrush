@@ -3,23 +3,20 @@ import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogFooter,
   DialogHeader,
-  DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { MoveRight } from "lucide-react";
-import SubHeading from "./SubHeading";
 import Link from "next/link";
+import SubHeading from "../shared/SubHeading";
 
-interface ChallengeCardProps {
+type Props = {
   icon: string;
   title: string;
   description: string;
 }
 
-const ChallengeCard = ({ icon, title, description }: ChallengeCardProps) => {
+const ChallengeCard = ({ icon, title, description }: Props) => {
   return (
     <>
       <Dialog>

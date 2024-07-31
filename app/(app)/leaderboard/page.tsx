@@ -1,4 +1,4 @@
-import Leaderboard from "../components/Leaderboard";
+import Leaderboard from "../components/shared/Leaderboard";
 
 // export const dynamic = "force dynamic";
 
