@@ -7,7 +7,6 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useWindowSize } from "usehooks-ts";
 import { Code, LoaderCircle } from "lucide-react";
 import { updateUserAction } from "@/app/actions";
-import { motion } from "framer-motion";
 import { Answers, Questions, User } from "@prisma/client";
 import Confetti from "react-confetti";
 import QuestionPagination from "../../components/QuestionPagination";
@@ -80,8 +79,8 @@ const QuizContainer = ({ question, answers, user, day, difficulty }: Props) => {
           <h2 className="text-pretty text-xl md:text-2xl">
             {question?.question}
           </h2>
-          <div className="-my-2">
-            <CodeBox code={question.code as string} />
+          <div>
+            <CodeBox code={question.code?.trim() as string} />
           </div>
         </div>
         <div className="space-y-4">

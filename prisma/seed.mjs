@@ -72,11 +72,9 @@ const result = arr.reduce((acc, curr) => acc * curr, 1);`,
   await prisma.questions.create({
     data: {
       question: "What will be logged to the console when this code runs?",
-      code: `
-const person = { name: "Alice", age: 30 };
+      code: `const person = { name: "Alice", age: 30 };
 const { name } = person;
-console.log(name);
-      `,
+console.log(name);`,
       Answers: {
         create: [
           { answer: "{ name: 'Alice', age: 30 }", correct: false },
@@ -94,11 +92,9 @@ console.log(name);
   await prisma.questions.create({
     data: {
       question: "What is the output of the following code?",
-      code: `
-const numbers = [5, 12, 8, 130, 44];
+      code: `const numbers = [5, 12, 8, 130, 44];
 const isLargeNumber = (element) => element > 13;
-console.log(numbers.findIndex(isLargeNumber));
-      `,
+console.log(numbers.findIndex(isLargeNumber));`,
       Answers: {
         create: [
           { answer: "3", correct: true },
@@ -117,12 +113,10 @@ console.log(numbers.findIndex(isLargeNumber));
     data: {
       question:
         "What is the correct way to handle potential errors in the following asynchronous code?",
-      code: `
-fetch('https://api.example.com/data')
+      code: `fetch('https://api.example.com/data')
   .then(response => response.json())
   .then(data => console.log(data))
-  // Error handling needed here
-      `,
+  // Error handling needed here`,
       Answers: {
         create: [
           {
