@@ -6,7 +6,7 @@ const Hero = () => {
     <section className="h-[600px] w-full flex justify-center items-center space-y-6 text-center px-5">
       <div className="relative max-w-xl">
         <div className="relative space-y-6 z-10 flex items-center flex-col">
-          <h1 className="text-5xl sm:text-7xl font-bold">
+          <h1 className="text-5xl md:text-7xl font-bold">
             Level Up Your Coding Skills
           </h1>
           <p className="text-gray-300 text-lg tracking-wide text-pretty font-sourceSans3 md:w-3/4">

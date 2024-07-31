@@ -29,7 +29,7 @@ const FeaturesCardList = () => {
   return (
     <section className="px-5 md:px-20 py-4 sm:py-6">
       <div className="max-w-5xl mx-auto space-y-12">
-        <h2 className="text-4xl font-bold text-center">
+        <h2 className="text-3xl md:text-4xl font-bold text-center">
           Challenge yourself, climb the ranks.
         </h2>
         <div className="flex w-full gap-4 flex-wrap md:flex-nowrap mx-auto">
