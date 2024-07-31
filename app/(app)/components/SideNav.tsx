@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 // Icons
 import { FaCode } from "react-icons/fa";
 import { Trophy, UserRound, LayoutDashboard } from "lucide-react";
+import { SignOutButton } from "./SignOutButton";
 
 type NavLink = {
   label: string;
@@ -57,7 +58,7 @@ const SideNav = () => {
           ))}
         </div>
       </div>
-      <UserButton />
+      <SignOutButton/>
     </nav>
   );
 };
