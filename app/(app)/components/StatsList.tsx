@@ -7,43 +7,33 @@ const StatsList = async () => {
   const user = (await getUser()) as User;
   const allUsers = (await getAllUsers()) as User[];
 
+  const sortedUsers = allUsers.sort((a, b) => b.score - a.score);
   const currentUserRank =
-    allUsers.findIndex((user) => user.username === user.username) + 1;
+    sortedUsers.findIndex((u) => u.username === user.username) + 1;
 
-  const totalUsers = allUsers.length;
+  const totalUsers = sortedUsers.length;
   const top5Percent = Math.ceil(totalUsers * 0.05);
   const top10Percent = Math.ceil(totalUsers * 0.1);
   const top20Percent = Math.ceil(totalUsers * 0.2);
 
-  let scoreDetail;
-  if (currentUserRank === 1) {
-    scoreDetail = "You have the highest score!";
-  } else if (user.score === null || user.score === 0) {
-    scoreDetail = "Time to start earning points!";
-  } else if (currentUserRank <= top5Percent) {
-    scoreDetail = "Top 5% of users.";
-  } else if (currentUserRank <= top10Percent) {
-    scoreDetail = "Top 10% of users.";
-  } else if (currentUserRank <= top20Percent) {
-    scoreDetail = "Top 20% of users.";
-  } else {
-    scoreDetail = "Keep it up!";
-  }
+  const scoreDetail = (() => {
+    if (user.score === null || user.score === 0)
+      return "Time to start earning points!";
+    if (currentUserRank <= top5Percent) return "Top 5% of users.";
+    if (currentUserRank <= top10Percent) return "Top 10% of users.";
+    if (currentUserRank <= top20Percent) return "Top 20% of users.";
+    return "Keep it up!";
+  })();
 
-  let rankDetail;
-  if (currentUserRank === 1) {
-    rankDetail = "You are top of the leaderboard!";
-  } else if (user.score === null || user.score === 0) {
-    rankDetail = "Earn points to rank up!";
-  } else if (currentUserRank === 2) {
-    rankDetail = "You are in 2nd place!";
-  } else if (currentUserRank === 3) {
-    rankDetail = "You are in 3rd place!";
-  } else if (currentUserRank === 4) {
-    rankDetail = "Can you make top 3?";
-  } else {
-    rankDetail = "Keep it up!";
-  }
+  const rankDetail = (() => {
+    if (user.score === null || user.score === 0)
+      return "Earn points to rank up!";
+    if (currentUserRank === 1) return "You are top of the leaderboard!";
+    if (currentUserRank === 2) return "You are in 2nd place!";
+    if (currentUserRank === 3) return "You are in 3rd place!";
+    if (currentUserRank <= 4) return "Can you make top 3?";
+    return "Keep it up!";
+  })();
 
   const streakDetail =
     user.streak === 0 ? "Time to start a streak!" : "Keep it up!";

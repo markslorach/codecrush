@@ -1,9 +1,7 @@
-import type { Metadata } from "next";
 import { Ubuntu, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
-
-// const inter = Inter({ subsets: ["latin"] });
+import { Metadata } from "next";
 
 const ubuntu = Ubuntu({
   weight: ["300", "400", "500", "700", ],
@@ -27,7 +25,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
 
   return (
     <ClerkProvider>
