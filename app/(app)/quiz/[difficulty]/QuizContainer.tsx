@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useWindowSize } from "usehooks-ts";
 import { Code, LoaderCircle } from "lucide-react";
-import { updateUser } from "@/app/actions";
+import { updateUserAction } from "@/app/actions";
 import { motion } from "framer-motion";
 import { Answers, Questions, User } from "@prisma/client";
 import Confetti from "react-confetti";
@@ -22,10 +22,10 @@ interface Props {
 }
 
 const QuizContainer = ({ question, answers, user, day, difficulty }: Props) => {
-  const [selectedAnswer, setSelectedAnswer] = useState<Answers>(answers[0]); // Store the selected answer object
-  const [submitted, setSubmitted] = useState(false); // Track if the user has submitted
-  const [disabled, setDisabled] = useState(false); // Disable the submit button after submission
-  const [pending, setPending] = useState(false); // Track if the submission is pending
+  const [selectedAnswer, setSelectedAnswer] = useState<Answers>(answers[0]);
+  const [submitted, setSubmitted] = useState(false);
+  const [disabled, setDisabled] = useState(false);
+  const [pending, setPending] = useState(false);
 
   // React confetti state
   const [confetti, setConfetti] = useState(false);
@@ -41,6 +41,7 @@ const QuizContainer = ({ question, answers, user, day, difficulty }: Props) => {
 
   const handleSubmit = () => {
     setPending(true);
+    setDisabled(true);
     setTimeout(() => {
       setSubmitted(true);
       setPending(false);
@@ -49,6 +50,19 @@ const QuizContainer = ({ question, answers, user, day, difficulty }: Props) => {
         setTimeout(() => setConfettiRecycle(false), 3000);
       }
     }, 1000);
+  };
+
+  const updateUser = async () => {
+    handleSubmit();
+    const result = await updateUserAction(
+      selectedAnswer?.correct,
+      difficulty,
+      day,
+    );
+
+    if (result?.error) {
+      console.error(result.error);
+    }
   };
 
   return (
@@ -77,11 +91,8 @@ const QuizContainer = ({ question, answers, user, day, difficulty }: Props) => {
             className="space-y-2"
           >
             {answers.map((answer, idx) => (
-              <motion.div
+              <div
                 key={answer.id}
-                // initial={{ opacity: 0 }}
-                // animate={{ opacity: 1 }}
-                // transition={{ delay: idx * 0.2 }}
                 className={cn(
                   "flex items-center space-x-4 rounded-lg bg-slate-800 pl-4 transition-colors",
                   {
@@ -106,19 +117,12 @@ const QuizContainer = ({ question, answers, user, day, difficulty }: Props) => {
                 >
                   {answer.answer}
                 </Label>
-              </motion.div>
+              </div>
             ))}
           </RadioGroup>
 
-          <form
-            onSubmit={(e) => {
-              updateUser(selectedAnswer?.correct, difficulty);
-              e.preventDefault();
-              setDisabled(true);
-            }}
-          >
+          <form action={updateUser}>
             <Button
-              onClick={handleSubmit}
               disabled={disabled}
               variant="outline"
               type="submit"

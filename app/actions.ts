@@ -1,12 +1,14 @@
 "use server";
 import { getUser } from "@/lib/user";
 import prisma from "@/prisma/client";
-import { getDay } from "@/utils/helpers";
 
-// Update user stats
-export const updateUser = async (correct: boolean, difficulty: string) => {
+// Update user score and streak
+export const updateUserAction = async (
+  correct: boolean,
+  difficulty: string,
+  day: number,
+) => {
   try {
-    const day = getDay();
     const user = await getUser();
 
     if (!user) {
