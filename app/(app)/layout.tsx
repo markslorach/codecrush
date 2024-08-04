@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from "react";
+import React, { ReactNode } from "react";
 import MobileNav from "./components/shared/MobileNav";
 import SideNav from "./components/shared/SideNav";
 

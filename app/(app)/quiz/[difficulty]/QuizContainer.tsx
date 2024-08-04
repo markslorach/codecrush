@@ -37,8 +37,15 @@ const QuizContainer = ({ question, answers, user, day, difficulty }: Props) => {
   }, [userAnswered]);
 
   const handleSubmit = () => {
+    updateUserAction(selectedAnswer?.correct, difficulty, day).then(
+      (result) => {
+        if (result?.error) console.error(result.error);
+      },
+    );
+
     setPending(true);
     setDisabled(true);
+
     setTimeout(() => {
       setSubmitted(true);
       setPending(false);
@@ -47,19 +54,6 @@ const QuizContainer = ({ question, answers, user, day, difficulty }: Props) => {
         setTimeout(() => setConfettiRecycle(false), 3000);
       }
     }, 1000);
-  };
-
-  const updateUser = async () => {
-    handleSubmit();
-    const result = await updateUserAction(
-      selectedAnswer?.correct,
-      difficulty,
-      day,
-    );
-
-    if (result?.error) {
-      console.error(result.error);
-    }
   };
 
   return (
@@ -85,9 +79,11 @@ const QuizContainer = ({ question, answers, user, day, difficulty }: Props) => {
             selectedAnswer={selectedAnswer}
             setSelectedAnswer={setSelectedAnswer}
           />
-          <form action={updateUser}>
-            <SubmitButton disabled={disabled} pending={pending} />
-          </form>
+          <SubmitButton
+            disabled={disabled}
+            pending={pending}
+            handleSubmit={handleSubmit}
+          />
         </div>
       </section>
       <QuestionPagination />

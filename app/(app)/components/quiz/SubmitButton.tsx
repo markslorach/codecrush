@@ -4,11 +4,13 @@ import { Code, LoaderCircle } from "lucide-react";
 type Props = {
   disabled: boolean;
   pending: boolean;
+  handleSubmit: () => void;
 };
 
-const SubmitButton = ({ disabled, pending }: Props) => {
+const SubmitButton = ({ disabled, pending, handleSubmit }: Props) => {
   return (
     <Button
+      onClick={handleSubmit}
       disabled={disabled}
       variant="outline"
       type="submit"
