@@ -27,9 +27,9 @@ body {
   @apply bg-[#0f172a];
 }
 
-.cl-internal-1hs840h {
+/* .cl-internal-1hs840h {
   @apply hidden;
-}
+} */
 
 @layer utilities {
   .animation-delay-2000 {

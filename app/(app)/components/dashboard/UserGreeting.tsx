@@ -12,7 +12,7 @@ const UserGreeting = async () => {
         <span>Hello,</span>{" "}
         {capitaliseString(user.username)}!
       </h1>
-      <UserButton />
+      <UserButton afterSignOutUrl="/" />
     </header>
   );
 };
