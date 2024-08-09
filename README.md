@@ -1,8 +1,8 @@
 # CodeCrush
 
-[CodeCrush](https://codecrushquiz.vercel.app/) is a quiz application with daily coding challenges. Users can answer 3 daily questions of varying difficulties to build a streak, earn points and rank up on the leaderboard. \
+[CodeCrush](https://codecrushquiz.vercel.app/) is a quiz application with daily coding challenges. Users can answer 3 daily questions of varying difficulties to build a streak, earn points and rank up on the leaderboard.
 
-This is a solo rebuild of my group [capstone project](https://github.com/markslorach/codecrush-capstone.git) at CodeClan. \
+This is a solo rebuild of my group [capstone project](https://github.com/markslorach/codecrush-capstone.git) at CodeClan.
 
 For demo purposes there are one week worth of questions at present.
 
